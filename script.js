@@ -397,7 +397,7 @@ const createFloatingButton = () => {
     });
 
     fab.addEventListener('click', () => {
-        window.location.href = 'tel:(555)123-4567';
+        window.location.href = 'tel:(872)207-5198';
     });
 
     document.body.appendChild(fab);
