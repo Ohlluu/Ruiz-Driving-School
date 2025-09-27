@@ -5,27 +5,28 @@
 }
 
 :root {
-    --primary-color: #ff6b35;
-    --secondary-color: #f7931e;
-    --accent-color: #ff8c42;
-    --purple-accent: #8b5cf6;
-    --blue-accent: #3b82f6;
-    --green-accent: #10b981;
+    --primary-color: #fbbf24; /* Yellow - Primary Brand Color */
+    --secondary-color: #dc2626; /* Red - Secondary Brand Color */
+    --accent-color: #f59e0b; /* Golden Yellow */
+    --red-accent: #dc2626;
+    --yellow-accent: #fbbf24;
+    --orange-accent: #f97316;
     --text-primary: #1a1a1a;
     --text-secondary: #4a5568;
     --text-light: #718096;
     --background: #ffffff;
-    --surface: #fafbfc;
+    --surface: #fffbf0; /* Slight yellow tint */
     --dark-surface: #1a202c;
-    --border: #e2e8f0;
-    --shadow: rgba(255, 107, 53, 0.1);
-    --shadow-lg: rgba(255, 107, 53, 0.2);
-    --shadow-colored: rgba(255, 107, 53, 0.3);
-    --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-    --gradient-secondary: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-    --gradient-accent: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    --border: #fde68a; /* Yellow border */
+    --shadow: rgba(251, 191, 36, 0.15);
+    --shadow-lg: rgba(251, 191, 36, 0.25);
+    --shadow-colored: rgba(251, 191, 36, 0.3);
+    --shadow-red: rgba(220, 38, 38, 0.3);
+    --gradient-primary: linear-gradient(135deg, #fbbf24 0%, #dc2626 100%); /* Yellow to Red */
+    --gradient-secondary: linear-gradient(135deg, #dc2626 0%, #fbbf24 100%); /* Red to Yellow */
+    --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
     --gradient-dark: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    --gradient-rainbow: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #8b5cf6 50%, #3b82f6 75%, #10b981 100%);
+    --gradient-rainbow: linear-gradient(135deg, #fbbf24 0%, #f59e0b 25%, #dc2626 50%, #f97316 75%, #fbbf24 100%);
     --border-radius: 16px;
     --border-radius-sm: 8px;
     --border-radius-lg: 24px;
@@ -1645,7 +1646,18 @@ section {
     animation: fadeIn 0.6s ease-out;
 }
 
-/* Responsive Design */
+/* Mobile-First Responsive Design */
+/* Base styles are mobile-first */
+body {
+    font-size: 16px;
+}
+
+.container {
+    padding: 0 1rem;
+    max-width: 100%;
+}
+
+/* Navigation Mobile */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -1664,7 +1676,7 @@ section {
         box-shadow: 0 10px 30px var(--shadow-lg);
         padding: 2rem 0;
         gap: 1.5rem;
-        border-top: 1px solid rgba(255, 107, 53, 0.1);
+        border-top: 2px solid var(--primary-color);
     }
 
     .nav-menu.active {
@@ -1692,153 +1704,201 @@ section {
         }
     }
 
-    /* Hero Mobile Layout */
+    /* Hero Mobile Layout - Mobile First */
     .hero {
         min-height: 100vh;
-        padding: 0 0 2rem 0;
+        padding: 80px 0 2rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .hero-container {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        gap: 3rem;
-        padding: 8rem 1rem 2rem 1rem;
+        gap: 2rem;
+        padding: 0 1rem;
+        width: 100%;
         max-width: 100%;
-        justify-items: center;
     }
 
     .hero-content {
-        order: 1;
+        width: 100%;
         max-width: 100%;
+        order: 1;
     }
 
     .hero-image {
+        width: 100%;
         order: 2;
-        margin-bottom: 2rem;
+        margin: 1rem 0;
     }
 
     .hero-title {
-        font-size: 2.8rem;
-        line-height: 1.1;
+        font-size: 2.5rem;
+        line-height: 1.2;
         margin-bottom: 1rem;
+        word-wrap: break-word;
     }
 
     .hero-subtitle {
         font-size: 1.1rem;
         margin-bottom: 2rem;
-        padding: 0 1rem;
+        padding: 0;
         line-height: 1.6;
+        max-width: 100%;
     }
 
     .hero-buttons {
+        display: flex;
         flex-direction: column;
         gap: 1rem;
         align-items: center;
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
         margin: 0 auto;
     }
 
     .hero-buttons .btn {
         width: 100%;
-        max-width: 280px;
+        max-width: 100%;
         padding: 18px 24px;
         font-size: 1rem;
+        text-align: center;
     }
 
-    /* Mobile Stats Layout */
+    /* Mobile Stats Layout - Improved */
     .hero-stats {
         position: static;
         transform: none;
-        flex-direction: row;
-        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
         gap: 1rem;
-        margin: 3rem auto 0;
+        margin: 2rem auto 0;
         width: 100%;
         max-width: 350px;
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
         border-radius: var(--border-radius);
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(20px);
         box-shadow:
-            0 10px 40px rgba(0, 0, 0, 0.1),
-            0 0 0 1px rgba(255, 255, 255, 0.2),
+            0 15px 40px var(--shadow-colored),
+            0 0 0 1px var(--primary-color),
             inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(255, 107, 53, 0.1);
+        border: 2px solid var(--primary-color);
+        order: 3;
     }
 
     .stat {
-        flex: 1;
-        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        padding: 1rem;
+        background: rgba(251, 191, 36, 0.05);
+        border-radius: var(--border-radius-sm);
+        gap: 1rem;
     }
 
     .stat-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
     }
 
     .stat-number {
         font-size: 1.8rem;
         margin-bottom: 0.25rem;
+        display: block;
     }
 
     .stat-label {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         line-height: 1.2;
     }
 
     /* Car illustration mobile */
     .car-illustration {
-        font-size: 4rem;
-    }
-
-    .car-illustration .fas {
-        font-size: 4rem;
-    }
-
-    /* Section spacing */
-    .about-content,
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .pricing-card.featured {
-        transform: none;
+        font-size: 3.5rem;
         margin: 1rem 0;
     }
 
+    .car-illustration .fas {
+        font-size: 3.5rem;
+    }
+
+    /* Section spacing - Mobile First */
+    .about-content,
+    .contact-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .about-text {
+        order: 1;
+    }
+
+    .about-image {
+        order: 2;
+        margin-top: 1rem;
+    }
+
+
     .booking-buttons {
+        display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1rem;
         width: 100%;
-        max-width: 300px;
+        max-width: 320px;
         margin: 0 auto;
     }
 
     .booking-buttons .btn {
         width: 100%;
+        padding: 18px 24px;
     }
 
     .section-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
         margin-bottom: 1rem;
+        text-align: center;
+        padding: 0 1rem;
     }
 
     .section-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
         padding: 0 1rem;
+        text-align: center;
+        line-height: 1.6;
     }
 
     section {
-        padding: 4rem 0;
+        padding: 3rem 0;
     }
 
-    .container {
-        padding: 0 1rem;
+    .services-grid,
+    .instructors-grid,
+    .testimonials-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .service-card,
+    .instructor-card,
+    .testimonial-card {
+        margin: 0;
+        width: 100%;
     }
 }
 
@@ -1908,23 +1968,29 @@ section {
 
     /* Car illustration smaller */
     .car-illustration .fas {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 
-    /* Grids and cards */
-    .services-grid,
-    .instructors-grid,
-    .testimonials-grid,
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+    .car-illustration {
+        margin: 0.5rem 0;
     }
 
+    /* Cards small mobile */
     .service-card,
     .instructor-card,
-    .testimonial-card,
-    .pricing-card {
-        padding: 2rem 1.5rem;
+    .testimonial-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .instructor-photo {
+        width: 80px;
+        height: 80px;
     }
 
     .contact-form {
@@ -1932,12 +1998,17 @@ section {
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.75rem;
+        padding: 0 0.5rem;
     }
 
     .section-subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
         padding: 0 0.5rem;
+    }
+
+    section {
+        padding: 2.5rem 0;
     }
 
     /* Special offer mobile */
