@@ -383,16 +383,11 @@ body {
     border-radius: var(--border-radius-lg);
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 0 0 1px var(--primary-color),
         inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    animation: slideInUp 1s ease-out 0.5s both, statsFloat 6s ease-in-out infinite;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid var(--primary-color);
 }
 
-@keyframes statsFloat {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
-}
 
 .stat {
     display: flex;
@@ -415,12 +410,6 @@ body {
     margin-bottom: 1rem;
     font-size: 1.2rem;
     box-shadow: 0 8px 20px var(--shadow-colored);
-    animation: statBounce 2s ease-in-out infinite alternate;
-}
-
-@keyframes statBounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-5px); }
 }
 
 .stat-number {
@@ -1785,15 +1774,14 @@ body {
         text-align: center;
     }
 
-    /* Mobile Stats Layout - Improved */
+    /* Mobile Stats Layout - Properly Centered */
     .hero-stats {
         position: static;
-        transform: none;
         display: flex;
         flex-direction: column;
         gap: 1rem;
         margin: 2rem auto 0;
-        width: 100%;
+        width: 90%;
         max-width: 350px;
         padding: 1.5rem 1rem;
         border-radius: var(--border-radius);
@@ -1959,17 +1947,14 @@ body {
         font-size: 0.95rem;
     }
 
-    /* Mobile stats for small screens - Perfectly Centered */
+    /* Mobile stats for small screens - Centered */
     .hero-stats {
         flex-direction: column;
         gap: 1rem;
-        width: calc(100% - 1.5rem);
+        width: 85%;
         max-width: 300px;
         padding: 1rem;
         margin: 1.5rem auto 0;
-        left: 50%;
-        transform: translateX(-50%);
-        position: relative;
     }
 
     .stat {
