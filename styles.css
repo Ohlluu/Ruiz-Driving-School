@@ -1776,13 +1776,15 @@ body {
 
     /* Mobile Stats Layout - Properly Centered */
     .hero-stats {
-        position: static;
+        position: relative;
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        margin: 2rem auto 0;
+        left: 50%;
+        transform: translateX(-50%);
         width: 90%;
         max-width: 350px;
+        margin-top: 2rem;
         padding: 1.5rem 1rem;
         border-radius: var(--border-radius);
         background: rgba(255, 255, 255, 0.95);
@@ -1951,10 +1953,12 @@ body {
     .hero-stats {
         flex-direction: column;
         gap: 1rem;
-        width: 100%;
+        width: 85%;
         max-width: 300px;
         padding: 1rem;
-        margin: 1.5rem auto 0;
+        margin-top: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .stat {
