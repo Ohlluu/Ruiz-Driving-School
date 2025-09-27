@@ -263,91 +263,178 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Testimonials Carousel (if you want to add carousel functionality)
-class TestimonialsCarousel {
-    constructor(container) {
-        this.container = container;
-        this.testimonials = container.querySelectorAll('.testimonial-card');
-        this.currentIndex = 0;
-        this.init();
-    }
-
-    init() {
-        if (this.testimonials.length <= 1) return;
-
-        // Create navigation dots
-        const dotsContainer = document.createElement('div');
-        dotsContainer.className = 'testimonial-dots';
-        dotsContainer.style.cssText = `
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        `;
-
-        this.testimonials.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.className = 'testimonial-dot';
-            dot.style.cssText = `
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border: none;
-                background: ${index === 0 ? 'var(--primary-color)' : 'var(--border)'};
-                cursor: pointer;
-                transition: all 0.3s ease;
-            `;
-
-            dot.addEventListener('click', () => this.goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
-
-        this.container.appendChild(dotsContainer);
-        this.dots = dotsContainer.querySelectorAll('.testimonial-dot');
-
-        // Auto-rotate every 5 seconds
-        setInterval(() => {
-            this.nextSlide();
-        }, 5000);
-    }
-
-    goToSlide(index) {
-        this.currentIndex = index;
-        this.updateDots();
-    }
-
-    nextSlide() {
-        this.currentIndex = (this.currentIndex + 1) % this.testimonials.length;
-        this.updateDots();
-    }
-
-    updateDots() {
-        this.dots.forEach((dot, index) => {
-            dot.style.background = index === this.currentIndex ? 'var(--primary-color)' : 'var(--border)';
-        });
-    }
-}
-
-// Initialize testimonials carousel
+// Enhanced Interactive Testimonials
 document.addEventListener('DOMContentLoaded', () => {
-    const testimonialsSection = document.querySelector('.testimonials');
-    if (testimonialsSection && window.innerWidth > 768) {
-        // new TestimonialsCarousel(testimonialsSection);
-    }
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+    testimonialCards.forEach(card => {
+        // Add tilt effect on hover
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        });
+
+        // Add quote animation
+        const quote = card.querySelector('p');
+        if (quote) {
+            const text = quote.textContent;
+            quote.innerHTML = '';
+
+            [...text].forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${i * 0.05}s`;
+                span.className = 'char-animate';
+                quote.appendChild(span);
+            });
+        }
+    });
 });
 
-// Parallax Effect for Hero Section
+// Add character animation CSS
+const charStyles = document.createElement('style');
+charStyles.textContent = `
+    .char-animate {
+        display: inline-block;
+        animation: charFadeIn 0.6s ease-out both;
+    }
+
+    @keyframes charFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(20px) rotate(5deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+    }
+`;
+document.head.appendChild(charStyles);
+
+// Floating Action Button
+const createFloatingButton = () => {
+    const fab = document.createElement('div');
+    fab.innerHTML = `
+        <i class="fas fa-phone"></i>
+        <span class="fab-text">Call Now!</span>
+    `;
+    fab.className = 'floating-action-btn';
+    fab.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        box-shadow: 0 8px 25px var(--shadow-colored);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        overflow: hidden;
+        animation: fabBounce 2s ease-in-out infinite;
+    `;
+
+    const fabText = fab.querySelector('.fab-text');
+    if (fabText) {
+        fabText.style.cssText = `
+            position: absolute;
+            right: 70px;
+            background: var(--dark-surface);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            white-space: nowrap;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+        `;
+    }
+
+    fab.addEventListener('mouseenter', () => {
+        fab.style.transform = 'scale(1.1)';
+        if (fabText) {
+            fabText.style.opacity = '1';
+            fabText.style.transform = 'translateX(0)';
+        }
+    });
+
+    fab.addEventListener('mouseleave', () => {
+        fab.style.transform = 'scale(1)';
+        if (fabText) {
+            fabText.style.opacity = '0';
+            fabText.style.transform = 'translateX(20px)';
+        }
+    });
+
+    fab.addEventListener('click', () => {
+        window.location.href = 'tel:(555)123-4567';
+    });
+
+    document.body.appendChild(fab);
+};
+
+// Add FAB animation CSS
+const fabStyles = document.createElement('style');
+fabStyles.textContent = `
+    @keyframes fabBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+`;
+document.head.appendChild(fabStyles);
+
+// Initialize floating button
+document.addEventListener('DOMContentLoaded', createFloatingButton);
+
+// Enhanced Parallax Effects
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.car-illustration');
+    const rate = scrolled * -0.5;
 
+    // Hero parallax
+    const heroImage = document.querySelector('.car-illustration');
     if (heroImage && scrolled < window.innerHeight) {
-        const speed = scrolled * -0.5;
-        heroImage.style.transform = `translateY(${speed}px)`;
+        heroImage.style.transform = `translateY(${rate}px) rotate(${scrolled * 0.02}deg)`;
+    }
+
+    // Background elements parallax
+    const backgroundElements = document.querySelectorAll('.hero::before, .services::before');
+    backgroundElements.forEach((element, index) => {
+        const speed = (index + 1) * 0.3;
+        element.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+
+    // Floating stats parallax
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats && scrolled < window.innerHeight) {
+        const statsRate = scrolled * -0.2;
+        heroStats.style.transform = `translateX(-50%) translateY(${statsRate}px)`;
     }
 });
 
-// Service Cards Stagger Animation
+// Service Cards Stagger Animation with Mouse Tracking
 document.addEventListener('DOMContentLoaded', () => {
     const serviceCards = document.querySelectorAll('.service-card');
     const servicesObserver = new IntersectionObserver((entries) => {
@@ -368,6 +455,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (servicesGrid) {
         servicesObserver.observe(servicesGrid);
     }
+
+    // Add mouse tracking effect to service cards
+    serviceCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            card.style.setProperty('--x', x + '%');
+            card.style.setProperty('--y', y + '%');
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--x', '50%');
+            card.style.setProperty('--y', '50%');
+        });
+    });
 });
 
 // Phone Number Formatting
@@ -426,14 +530,24 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Performance Optimization: Lazy Loading Images
+// Performance Optimization with exciting loading states
 document.addEventListener('DOMContentLoaded', () => {
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
+                    // Add loading shimmer effect
+                    img.style.background = 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)';
+                    img.style.backgroundSize = '200% 100%';
+                    img.style.animation = 'shimmer 1.5s infinite';
+
                     img.src = img.dataset.src;
+                    img.onload = () => {
+                        img.style.animation = 'none';
+                        img.style.background = 'none';
+                        img.classList.add('loaded-with-style');
+                    };
                     img.classList.remove('lazy');
                     imageObserver.unobserve(img);
                 }
@@ -445,6 +559,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Add shimmer animation
+const shimmerStyles = document.createElement('style');
+shimmerStyles.textContent = `
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+
+    .loaded-with-style {
+        animation: imageReveal 0.6s ease-out;
+    }
+
+    @keyframes imageReveal {
+        0% {
+            opacity: 0;
+            transform: scale(1.1);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+`;
+document.head.appendChild(shimmerStyles);
 
 // Accessibility Improvements
 document.addEventListener('DOMContentLoaded', () => {
@@ -484,4 +623,201 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-console.log('🚗 Ruiz Driving School website loaded successfully! Drive safe! 🚗');
+// Exciting Page Load Animation
+document.addEventListener('DOMContentLoaded', () => {
+    // Add loading animation to page
+    document.body.style.opacity = '0';
+    document.body.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        document.body.style.opacity = '1';
+        document.body.style.transform = 'translateY(0)';
+    }, 100);
+
+    // Cursor trail effect
+    createCursorTrail();
+
+    // Add particle effect on click
+    addClickParticles();
+});
+
+// Cursor Trail Effect
+function createCursorTrail() {
+    let dots = [];
+    let mouse = { x: 0, y: 0 };
+
+    // Create dots
+    for (let i = 0; i < 8; i++) {
+        let dot = document.createElement('div');
+        dot.className = 'cursor-dot';
+        dot.style.cssText = `
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            opacity: ${1 - i * 0.15};
+            z-index: 9999;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        `;
+        document.body.appendChild(dot);
+        dots.push({
+            el: dot,
+            x: 0,
+            y: 0
+        });
+    }
+
+    document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    function animateTrail() {
+        let x = mouse.x;
+        let y = mouse.y;
+
+        dots.forEach((dot, index) => {
+            dot.x += (x - dot.x) * (0.6 - index * 0.05);
+            dot.y += (y - dot.y) * (0.6 - index * 0.05);
+
+            dot.el.style.left = dot.x - 4 + 'px';
+            dot.el.style.top = dot.y - 4 + 'px';
+
+            x = dot.x;
+            y = dot.y;
+        });
+
+        requestAnimationFrame(animateTrail);
+    }
+
+    animateTrail();
+}
+
+// Click Particles Effect
+function addClickParticles() {
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('button, .btn, a[href]')) {
+            createParticles(e.clientX, e.clientY);
+        }
+    });
+}
+
+function createParticles(x, y) {
+    const colors = ['#ff6b35', '#f7931e', '#8b5cf6', '#3b82f6', '#10b981'];
+
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 6px;
+            height: 6px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            animation: particleExplode 0.6s ease-out forwards;
+        `;
+
+        const angle = (i / 12) * Math.PI * 2;
+        const velocity = 2 + Math.random() * 3;
+        const dx = Math.cos(angle) * velocity * 20;
+        const dy = Math.sin(angle) * velocity * 20;
+
+        particle.style.setProperty('--dx', dx + 'px');
+        particle.style.setProperty('--dy', dy + 'px');
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 600);
+    }
+}
+
+// Add particle animation CSS
+const particleStyles = document.createElement('style');
+particleStyles.textContent = `
+    @keyframes particleExplode {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(var(--dx), var(--dy)) scale(0);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyles);
+
+// Magnetic Button Effect
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', (e) => {
+            const rect = button.getBoundingClientRect();
+            const relX = e.clientX - rect.left;
+            const relY = e.clientY - rect.top;
+
+            button.style.transform = `translate(${(relX - rect.width/2) * 0.1}px, ${(relY - rect.height/2) * 0.1}px) scale(1.05)`;
+        });
+
+        button.addEventListener('mousemove', (e) => {
+            const rect = button.getBoundingClientRect();
+            const relX = e.clientX - rect.left;
+            const relY = e.clientY - rect.top;
+
+            button.style.transform = `translate(${(relX - rect.width/2) * 0.1}px, ${(relY - rect.height/2) * 0.1}px) scale(1.05)`;
+        });
+
+        button.addEventListener('mouseleave', () => {
+            button.style.transform = 'translate(0, 0) scale(1)';
+        });
+    });
+});
+
+// Scroll-triggered text animations
+const observeTextElements = () => {
+    const textElements = document.querySelectorAll('h1, h2, h3, p');
+
+    const textObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'textSlideIn 0.8s ease-out forwards';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    textElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        textObserver.observe(el);
+    });
+};
+
+// Add text animation CSS
+const textStyles = document.createElement('style');
+textStyles.textContent = `
+    @keyframes textSlideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+document.head.appendChild(textStyles);
+
+// Initialize text animations
+document.addEventListener('DOMContentLoaded', observeTextElements);
+
+console.log('🚗✨ Ruiz Driving School website loaded with EXCITEMENT! Drive safe! ✨🚗');
