@@ -1807,6 +1807,11 @@ body {
         font-size: 1.8rem;
         margin-bottom: 0.25rem;
         display: block;
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
+        color: var(--primary-color);
     }
 
     .stat-label {

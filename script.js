@@ -120,12 +120,15 @@ const heroStatsObserver = new IntersectionObserver((entries) => {
                 } else {
                     targetNumber = parseInt(text);
                     animateCounter(stat, targetNumber);
+                    setTimeout(() => {
+                        stat.textContent = targetNumber + '+';
+                    }, 2000);
                 }
             });
             heroStatsObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 
 document.addEventListener('DOMContentLoaded', () => {
     const heroStats = document.querySelector('.hero-stats');
