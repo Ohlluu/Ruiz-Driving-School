@@ -434,9 +434,9 @@ window.addEventListener('scroll', () => {
         element.style.transform = `translateY(${scrolled * speed}px)`;
     });
 
-    // Floating stats parallax
+    // Floating stats parallax - disabled on mobile
     const heroStats = document.querySelector('.hero-stats');
-    if (heroStats && scrolled < window.innerHeight) {
+    if (heroStats && scrolled < window.innerHeight && window.innerWidth > 768) {
         const statsRate = scrolled * -0.2;
         heroStats.style.transform = `translateX(-50%) translateY(${statsRate}px)`;
     }
