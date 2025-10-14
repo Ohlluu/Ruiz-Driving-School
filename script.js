@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Counter Animation for Hero Stats
-const animateCounter = (element, target, duration = 2000) => {
+const animateCounter = (element, target, suffix, duration = 2000) => {
     let start = 0;
     const increment = target / (duration / 16);
 
@@ -89,7 +89,7 @@ const animateCounter = (element, target, duration = 2000) => {
             element.textContent = Math.floor(start);
             requestAnimationFrame(updateCounter);
         } else {
-            element.textContent = target;
+            element.textContent = target + suffix;
         }
     };
 
@@ -102,28 +102,22 @@ const heroStatsObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const text = stat.textContent;
+                const text = stat.textContent.trim();
                 let targetNumber;
+                let suffix = '';
 
                 if (text.includes('+')) {
                     targetNumber = parseInt(text.replace('+', ''));
-                    animateCounter(stat, targetNumber);
-                    setTimeout(() => {
-                        stat.textContent = targetNumber + '+';
-                    }, 2000);
+                    suffix = '+';
                 } else if (text.includes('%')) {
                     targetNumber = parseInt(text.replace('%', ''));
-                    animateCounter(stat, targetNumber);
-                    setTimeout(() => {
-                        stat.textContent = targetNumber + '%';
-                    }, 2000);
+                    suffix = '%';
                 } else {
                     targetNumber = parseInt(text);
-                    animateCounter(stat, targetNumber);
-                    setTimeout(() => {
-                        stat.textContent = targetNumber + '+';
-                    }, 2000);
+                    suffix = '+';
                 }
+
+                animateCounter(stat, targetNumber, suffix);
             });
             heroStatsObserver.unobserve(entry.target);
         }
