@@ -650,58 +650,10 @@ document.addEventListener('DOMContentLoaded', () => {
     addClickParticles();
 });
 
-// Cursor Trail Effect
+// Cursor Trail Effect - Disabled per user request
 function createCursorTrail() {
-    let dots = [];
-    let mouse = { x: 0, y: 0 };
-
-    // Create dots
-    for (let i = 0; i < 8; i++) {
-        let dot = document.createElement('div');
-        dot.className = 'cursor-dot';
-        dot.style.cssText = `
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            border-radius: 50%;
-            opacity: ${1 - i * 0.15};
-            z-index: 9999;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        `;
-        document.body.appendChild(dot);
-        dots.push({
-            el: dot,
-            x: 0,
-            y: 0
-        });
-    }
-
-    document.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
-    function animateTrail() {
-        let x = mouse.x;
-        let y = mouse.y;
-
-        dots.forEach((dot, index) => {
-            dot.x += (x - dot.x) * (0.6 - index * 0.05);
-            dot.y += (y - dot.y) * (0.6 - index * 0.05);
-
-            dot.el.style.left = dot.x - 4 + 'px';
-            dot.el.style.top = dot.y - 4 + 'px';
-
-            x = dot.x;
-            y = dot.y;
-        });
-
-        requestAnimationFrame(animateTrail);
-    }
-
-    animateTrail();
+    // Cursor trail effect has been disabled
+    return;
 }
 
 // Click Particles Effect
