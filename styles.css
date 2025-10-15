@@ -1101,6 +1101,63 @@ section {
     margin-right: 0.25rem;
 }
 
+/* Other Instructors Grid */
+.other-instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 3rem auto 0 auto;
+}
+
+.instructor-card-simple {
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: var(--bounce);
+    border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+.instructor-card-simple:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(220, 38, 38, 0.15);
+    border-color: rgba(220, 38, 38, 0.2);
+}
+
+.instructor-photo-simple {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    box-shadow: 0 8px 20px var(--shadow-colored);
+    transition: var(--bounce);
+}
+
+.instructor-card-simple:hover .instructor-photo-simple {
+    transform: scale(1.1);
+}
+
+.instructor-card-simple h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.instructor-title-simple {
+    color: var(--secondary-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
 /* Testimonials Section */
 .testimonials {
     background: var(--background);
