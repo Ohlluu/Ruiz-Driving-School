@@ -78,6 +78,16 @@ body {
     color: var(--secondary-color);
     font-weight: 700;
     font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.nav-tagline {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-style: italic;
+    margin: 0;
+    letter-spacing: 0.5px;
 }
 
 .nav-menu {
