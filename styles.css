@@ -1319,6 +1319,7 @@ img { display: block; max-width: 100%; }
 
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-photo-wrap { aspect-ratio: 3 / 2; max-height: 320px; }
+    .about-photo-wrap img { object-position: center 20%; }
 
     .contact-grid { grid-template-columns: 1fr 1fr; }
 
