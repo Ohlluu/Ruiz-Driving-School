@@ -584,10 +584,79 @@
             <div class="footer-bottom">
                 <p>&copy; 2024 Ruiz Driving School. All rights reserved.</p>
                 <p>Website by <a href="https://ohlluudev.com" target="_blank">ohlluudev.com</a></p>
+                <a href="#" id="pt-link" class="pt-footer-link">PT</a>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- PRACTICE TEST OVERLAY -->
+    <div id="pt-overlay" class="pt-overlay" hidden>
+
+        <!-- Screen 1: Password -->
+        <div id="pt-screen-password" class="pt-screen">
+            <div class="pt-card">
+                <button id="pt-close-btn" class="pt-close" aria-label="Close">&#x2715;</button>
+                <div class="pt-logo-wrap">
+                    <span class="logo-main">Ruiz</span>
+                    <span class="logo-sub">Driving School</span>
+                </div>
+                <h2 class="pt-heading">Practice Test</h2>
+                <p class="pt-sub">Enter the instructor password to access the practice test.</p>
+                <div class="pt-input-group">
+                    <input type="password" id="pt-password-input" placeholder="Password" autocomplete="off" />
+                    <p id="pt-password-error" class="pt-error" hidden>Incorrect password. Please try again.</p>
+                </div>
+                <button id="pt-password-submit" class="pt-btn pt-btn-primary">Continue</button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Language -->
+        <div id="pt-screen-language" class="pt-screen" hidden>
+            <div class="pt-card">
+                <button id="pt-close-lang" class="pt-close" aria-label="Close">&#x2715;</button>
+                <button id="pt-back-to-pw" class="pt-back">&#8592; Back</button>
+                <h2 class="pt-heading">Select Language</h2>
+                <p class="pt-sub">Choose your preferred language for the test.</p>
+                <div class="pt-lang-grid">
+                    <button class="pt-lang-btn" data-lang="en">
+                        <span class="pt-lang-flag">🇺🇸</span>
+                        <span>English</span>
+                    </button>
+                    <button class="pt-lang-btn" data-lang="es">
+                        <span class="pt-lang-flag">🇲🇽</span>
+                        <span>Español</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Quiz -->
+        <div id="pt-screen-quiz" class="pt-screen" hidden>
+            <div class="pt-card pt-card-quiz">
+                <div class="pt-progress-bar"><div id="pt-progress-fill" class="pt-progress-fill"></div></div>
+                <p id="pt-progress-text" class="pt-progress-text">Question 1 of 5</p>
+                <h3 id="pt-question-text" class="pt-question"></h3>
+                <div id="pt-options" class="pt-options"></div>
+                <button id="pt-next-btn" class="pt-btn pt-btn-primary" disabled>Next</button>
+            </div>
+        </div>
+
+        <!-- Screen 4: Results -->
+        <div id="pt-screen-results" class="pt-screen" hidden>
+            <div class="pt-card pt-card-results">
+                <h2 class="pt-heading" style="margin-bottom:1.25rem; text-align:center;">Results</h2>
+                <div id="pt-score-display" class="pt-score-display"></div>
+                <div id="pt-result-badge" class="pt-result-badge"></div>
+                <div id="pt-review" class="pt-review"></div>
+                <div class="pt-result-actions">
+                    <button id="pt-retake-btn" class="pt-btn pt-btn-primary">Retake Test</button>
+                    <button id="pt-exit-btn" class="pt-btn pt-btn-ghost">Exit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

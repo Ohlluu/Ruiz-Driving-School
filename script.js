@@ -159,3 +159,290 @@ document.addEventListener('keydown', e => {
         setTimeout(() => n.remove(), 4000);
     }
 });
+
+// =============================================
+//   PRACTICE TEST
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('pt-overlay');
+    if (!overlay) return;
+
+    const PT_PASSWORD = 'Instructor7';
+
+    const questions = {
+        en: [
+            {
+                q: "In Illinois, what does a flashing red traffic light require you to do?",
+                options: [
+                    "Slow down and proceed carefully",
+                    "Stop completely, then proceed when safe",
+                    "Yield to cross traffic only",
+                    "Stop and wait for the light to turn green"
+                ],
+                answer: 1
+            },
+            {
+                q: "What is the speed limit in Illinois when driving through an alley?",
+                options: ["10 mph", "15 mph", "20 mph", "25 mph"],
+                answer: 1
+            },
+            {
+                q: "In Illinois, you must signal a turn at least how many feet before turning?",
+                options: ["50 feet", "100 feet", "200 feet", "300 feet"],
+                answer: 1
+            },
+            {
+                q: "What does a pennant-shaped yellow sign on the left side of the road indicate?",
+                options: [
+                    "Yield ahead",
+                    "No passing zone",
+                    "School crossing ahead",
+                    "Construction zone ahead"
+                ],
+                answer: 1
+            },
+            {
+                q: "In Illinois, when are you required to use your headlights?",
+                options: [
+                    "Only between midnight and 4 AM",
+                    "Only on highways and expressways",
+                    "From sunset to sunrise and when visibility is reduced",
+                    "Only when it is actively raining"
+                ],
+                answer: 2
+            }
+        ],
+        es: [
+            {
+                q: "En Illinois, ¿qué te obliga a hacer una luz de tráfico roja intermitente?",
+                options: [
+                    "Reducir la velocidad y proceder con cuidado",
+                    "Detenerse completamente y proceder cuando sea seguro",
+                    "Ceder el paso solo al tráfico cruzado",
+                    "Detenerse y esperar a que el semáforo se ponga verde"
+                ],
+                answer: 1
+            },
+            {
+                q: "¿Cuál es el límite de velocidad en Illinois cuando se conduce por un callejón?",
+                options: ["10 mph", "15 mph", "20 mph", "25 mph"],
+                answer: 1
+            },
+            {
+                q: "En Illinois, ¿con cuántos pies de anticipación debes señalizar una vuelta antes de girar?",
+                options: ["50 pies", "100 pies", "200 pies", "300 pies"],
+                answer: 1
+            },
+            {
+                q: "¿Qué indica un letrero amarillo en forma de banderín al lado izquierdo de la carretera?",
+                options: [
+                    "Cruce de peatones adelante",
+                    "Zona de no adelantamiento",
+                    "Cruce escolar adelante",
+                    "Zona de construcción adelante"
+                ],
+                answer: 1
+            },
+            {
+                q: "En Illinois, ¿cuándo se requiere usar las luces delanteras?",
+                options: [
+                    "Solo entre la medianoche y las 4 AM",
+                    "Solo en autopistas y carreteras expresas",
+                    "Desde el atardecer hasta el amanecer y cuando la visibilidad es reducida",
+                    "Solo cuando llueve activamente"
+                ],
+                answer: 2
+            }
+        ]
+    };
+
+    const LETTERS = ['A', 'B', 'C', 'D'];
+
+    // State
+    let lang = 'en';
+    let qIndex = 0;
+    let answers = [];
+    let answered = false;
+
+    // Elements
+    const screens = {
+        password: document.getElementById('pt-screen-password'),
+        language: document.getElementById('pt-screen-language'),
+        quiz: document.getElementById('pt-screen-quiz'),
+        results: document.getElementById('pt-screen-results')
+    };
+
+    function showScreen(name) {
+        Object.values(screens).forEach(s => { s.hidden = true; });
+        screens[name].hidden = false;
+    }
+
+    function openOverlay() {
+        overlay.hidden = false;
+        document.body.style.overflow = 'hidden';
+        document.getElementById('pt-password-input').value = '';
+        document.getElementById('pt-password-error').hidden = true;
+        showScreen('password');
+        setTimeout(() => document.getElementById('pt-password-input').focus(), 60);
+    }
+
+    function closeOverlay() {
+        overlay.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    // Open via PT link
+    document.getElementById('pt-link').addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay();
+    });
+
+    // Close buttons
+    document.getElementById('pt-close-btn').addEventListener('click', closeOverlay);
+    document.getElementById('pt-close-lang').addEventListener('click', closeOverlay);
+
+    // Close on backdrop click
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeOverlay(); });
+
+    // Escape key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !overlay.hidden) closeOverlay();
+    });
+
+    // Password check
+    function checkPassword() {
+        const val = document.getElementById('pt-password-input').value;
+        const err = document.getElementById('pt-password-error');
+        if (val === PT_PASSWORD) {
+            err.hidden = true;
+            showScreen('language');
+        } else {
+            err.hidden = false;
+            document.getElementById('pt-password-input').select();
+        }
+    }
+
+    document.getElementById('pt-password-submit').addEventListener('click', checkPassword);
+    document.getElementById('pt-password-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') checkPassword();
+    });
+
+    // Back to password
+    document.getElementById('pt-back-to-pw').addEventListener('click', () => showScreen('password'));
+
+    // Language selection
+    document.querySelectorAll('.pt-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            lang = btn.dataset.lang;
+            startQuiz();
+        });
+    });
+
+    function startQuiz() {
+        qIndex = 0;
+        answers = [];
+        answered = false;
+        showScreen('quiz');
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const qs = questions[lang];
+        const q = qs[qIndex];
+        const total = qs.length;
+        answered = false;
+
+        document.getElementById('pt-progress-fill').style.width = `${((qIndex + 1) / total) * 100}%`;
+        document.getElementById('pt-progress-text').textContent =
+            lang === 'es' ? `Pregunta ${qIndex + 1} de ${total}` : `Question ${qIndex + 1} of ${total}`;
+        document.getElementById('pt-question-text').textContent = q.q;
+
+        const optContainer = document.getElementById('pt-options');
+        optContainer.innerHTML = '';
+        q.options.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'pt-option';
+            btn.innerHTML = `<span class="pt-option-letter">${LETTERS[i]}</span><span class="pt-option-text">${opt}</span>`;
+            btn.addEventListener('click', () => selectAnswer(i));
+            optContainer.appendChild(btn);
+        });
+
+        const nextBtn = document.getElementById('pt-next-btn');
+        nextBtn.disabled = true;
+        const isLast = qIndex === total - 1;
+        nextBtn.textContent = isLast
+            ? (lang === 'es' ? 'Ver Resultados' : 'See Results')
+            : (lang === 'es' ? 'Siguiente' : 'Next');
+    }
+
+    function selectAnswer(idx) {
+        if (answered) return;
+        answered = true;
+        answers.push(idx);
+
+        const opts = document.querySelectorAll('.pt-option');
+        const correct = questions[lang][qIndex].answer;
+        opts[idx].classList.add(idx === correct ? 'correct' : 'selected');
+        opts.forEach((btn, i) => {
+            if (i === correct) btn.classList.add('correct');
+            else if (i === idx && idx !== correct) btn.classList.add('incorrect');
+        });
+
+        document.getElementById('pt-next-btn').disabled = false;
+    }
+
+    document.getElementById('pt-next-btn').addEventListener('click', () => {
+        qIndex++;
+        if (qIndex >= questions[lang].length) {
+            showResults();
+        } else {
+            renderQuestion();
+        }
+    });
+
+    function showResults() {
+        const qs = questions[lang];
+        let score = 0;
+        answers.forEach((ans, i) => { if (ans === qs[i].answer) score++; });
+
+        const pct = Math.round((score / qs.length) * 100);
+        const passed = pct >= 80;
+
+        document.getElementById('pt-score-display').innerHTML = `
+            <div class="pt-score-num">${score}/${qs.length}</div>
+            <div class="pt-score-pct">${pct}% ${lang === 'es' ? 'correcto' : 'correct'}</div>
+        `;
+
+        document.getElementById('pt-result-badge').innerHTML = passed
+            ? `<span class="pt-pass-badge">&#10003; ${lang === 'es' ? 'Aprobado' : 'Passed'}</span>`
+            : `<span class="pt-fail-badge">&#10007; ${lang === 'es' ? 'Reprobado' : 'Failed'}</span>`;
+
+        const reviewHtml = qs.map((q, i) => {
+            const correct = answers[i] === q.answer;
+            const wrongCorrectLine = !correct
+                ? `<em>${lang === 'es' ? 'Correcto' : 'Correct'}: ${LETTERS[q.answer]}. ${q.options[q.answer]}</em>`
+                : '';
+            return `
+                <div class="pt-review-item">
+                    <div class="pt-review-icon ${correct ? 'correct' : 'incorrect'}">${correct ? '&#10003;' : '&#10007;'}</div>
+                    <div>
+                        <strong>${q.q}</strong>
+                        ${lang === 'es' ? 'Tu respuesta' : 'Your answer'}: ${LETTERS[answers[i]]}. ${q.options[answers[i]]}
+                        ${wrongCorrectLine}
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        document.getElementById('pt-review').innerHTML = reviewHtml;
+        document.getElementById('pt-progress-fill').style.width = '100%';
+
+        const retakeBtn = document.getElementById('pt-retake-btn');
+        retakeBtn.textContent = lang === 'es' ? 'Repetir Examen' : 'Retake Test';
+
+        showScreen('results');
+    }
+
+    document.getElementById('pt-retake-btn').addEventListener('click', () => showScreen('language'));
+    document.getElementById('pt-exit-btn').addEventListener('click', closeOverlay);
+});
