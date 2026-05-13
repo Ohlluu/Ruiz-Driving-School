@@ -1383,6 +1383,8 @@ img { display: block; max-width: 100%; }
     padding: 24px;
     overflow-y: auto;
 }
+.pt-overlay[hidden] { display: none !important; }
+.pt-screen[hidden] { display: none !important; }
 
 .pt-screen {
     width: 100%;
