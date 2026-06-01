@@ -284,9 +284,27 @@ img { display: block; max-width: 100%; }
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background:
-        linear-gradient(to right, rgba(12,10,8,0.90) 38%, rgba(8,6,4,0.45) 100%),
-        url('Ruiz Corrected.png') center / cover no-repeat;
+    position: relative;
+    overflow: hidden;
+    background: var(--dark);
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.55;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(8,6,4,0.75) 35%, rgba(8,6,4,0.25) 100%);
+    z-index: 1;
 }
 
 .hero-inner {
@@ -296,6 +314,8 @@ img { display: block; max-width: 100%; }
     max-width: var(--max-w);
     margin: 0 auto;
     width: 100%;
+    position: relative;
+    z-index: 2;
     padding: 140px 28px 60px;
 }
 
@@ -414,6 +434,8 @@ img { display: block; max-width: 100%; }
     align-items: stretch;
     justify-content: center;
     border-top: 2px solid rgba(255,215,0,0.15);
+    position: relative;
+    z-index: 2;
 }
 
 .hero-stat {
@@ -1301,10 +1323,13 @@ img { display: block; max-width: 100%; }
     .nav-link { font-size: 1rem; color: rgba(255,255,255,0.7); padding: 0.5rem 0; display: block; }
     .nav-cta { display: inline-block; }
 
-    .hero {
-        background:
-            linear-gradient(to bottom, rgba(12,10,8,0.86) 0%, rgba(8,6,4,0.6) 100%),
-            url('Ruiz Corrected.png') center / cover no-repeat;
+    .hero-video {
+        object-position: center top;
+        opacity: 0.4;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(8,6,4,0.80) 0%, rgba(8,6,4,0.45) 100%);
     }
 
     .hero-inner { padding: 120px 24px 48px; }
