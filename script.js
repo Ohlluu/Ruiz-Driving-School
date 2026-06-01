@@ -559,8 +559,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // State
     let lang = 'en';
-    let qIndex = 0;
-    let answers = [];
+    let queue = [];
+    let skippedSet = new Set();
+    let answersMap = {};
+    let answeredCount = 0;
+    let selectedAnswer = -1;
     let answered = false;
 
     // Elements
@@ -644,8 +647,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function startQuiz() {
-        qIndex = 0;
-        answers = [];
+        const total = questions[lang].length;
+        queue = Array.from({ length: total }, (_, i) => i);
+        skippedSet = new Set();
+        answersMap = {};
+        answeredCount = 0;
+        selectedAnswer = -1;
         answered = false;
         showScreen('quiz');
         renderQuestion();
@@ -653,17 +660,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderQuestion() {
         const qs = questions[lang];
-        const q = qs[qIndex];
+        const qIdx = queue[0];
+        const q = qs[qIdx];
         const total = qs.length;
         answered = false;
+        selectedAnswer = -1;
 
-        document.getElementById('pt-progress-fill').style.width = `${((qIndex + 1) / total) * 100}%`;
+        document.getElementById('pt-progress-fill').style.width = `${(answeredCount / total) * 100}%`;
         document.getElementById('pt-progress-text').textContent =
-            lang === 'es' ? `Pregunta ${qIndex + 1} de ${total}` : `Question ${qIndex + 1} of ${total}`;
+            lang === 'es' ? `Pregunta ${answeredCount + 1} de ${total}` : `Question ${answeredCount + 1} of ${total}`;
+
+        const wasSkipped = skippedSet.has(qIdx);
+        document.getElementById('pt-skipped-label').hidden = !wasSkipped;
+        document.getElementById('pt-skip-btn').hidden = wasSkipped;
 
         const imgEl = document.getElementById('pt-question-img');
         imgEl.src = q.img;
-        imgEl.alt = 'Question ' + (qIndex + 1) + ' reference image';
+        imgEl.alt = 'Question ' + (qIdx + 1) + ' reference image';
 
         document.getElementById('pt-question-text').textContent = q.q;
 
@@ -679,8 +692,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nextBtn = document.getElementById('pt-next-btn');
         nextBtn.disabled = true;
-        const isLast = qIndex === total - 1;
-        nextBtn.textContent = isLast
+        nextBtn.textContent = queue.length === 1
             ? (lang === 'es' ? 'Ver Resultados' : 'See Results')
             : (lang === 'es' ? 'Siguiente' : 'Next');
     }
@@ -688,10 +700,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function selectAnswer(idx) {
         if (answered) return;
         answered = true;
-        answers.push(idx);
+        selectedAnswer = idx;
 
         const opts = document.querySelectorAll('.pt-option');
-        const correct = questions[lang][qIndex].answer;
+        const correct = questions[lang][queue[0]].answer;
         opts[idx].classList.add(idx === correct ? 'correct' : 'selected');
         opts.forEach((btn, i) => {
             if (i === correct) btn.classList.add('correct');
@@ -699,21 +711,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.getElementById('pt-next-btn').disabled = false;
+        document.getElementById('pt-skip-btn').hidden = true;
     }
 
     document.getElementById('pt-next-btn').addEventListener('click', () => {
-        qIndex++;
-        if (qIndex >= questions[lang].length) {
-            showResults();
-        } else {
+        const qIdx = queue.shift();
+        answersMap[qIdx] = selectedAnswer;
+        answeredCount++;
+        if (queue.length > 0) {
             renderQuestion();
+        } else {
+            showResults();
         }
+    });
+
+    document.getElementById('pt-skip-btn').addEventListener('click', () => {
+        const qIdx = queue.shift();
+        skippedSet.add(qIdx);
+        queue.push(qIdx);
+        renderQuestion();
     });
 
     function showResults() {
         const qs = questions[lang];
         let score = 0;
-        answers.forEach((ans, i) => { if (ans === qs[i].answer) score++; });
+        qs.forEach((q, i) => { if (answersMap[i] === q.answer) score++; });
 
         const pct = Math.round((score / qs.length) * 100);
         const passed = pct >= 80;
@@ -728,7 +750,8 @@ document.addEventListener('DOMContentLoaded', () => {
             : `<span class="pt-fail-badge">&#10007; ${lang === 'es' ? 'Reprobado' : 'Failed'}</span>`;
 
         const reviewHtml = qs.map((q, i) => {
-            const correct = answers[i] === q.answer;
+            const userAns = answersMap[i];
+            const correct = userAns === q.answer;
             const wrongCorrectLine = !correct
                 ? `<em>${lang === 'es' ? 'Correcto' : 'Correct'}: ${LETTERS[q.answer]}. ${q.options[q.answer]}</em>`
                 : '';
@@ -737,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="pt-review-icon ${correct ? 'correct' : 'incorrect'}">${correct ? '&#10003;' : '&#10007;'}</div>
                     <div>
                         <strong>${q.q}</strong>
-                        ${lang === 'es' ? 'Tu respuesta' : 'Your answer'}: ${LETTERS[answers[i]]}. ${q.options[answers[i]]}
+                        ${lang === 'es' ? 'Tu respuesta' : 'Your answer'}: ${LETTERS[userAns]}. ${q.options[userAns]}
                         ${wrongCorrectLine}
                     </div>
                 </div>

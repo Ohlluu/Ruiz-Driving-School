@@ -637,10 +637,14 @@
             <div class="pt-card pt-card-quiz">
                 <div class="pt-progress-bar"><div id="pt-progress-fill" class="pt-progress-fill"></div></div>
                 <p id="pt-progress-text" class="pt-progress-text">Question 1 of 40</p>
+                <p id="pt-skipped-label" class="pt-skipped-label" hidden>&#8629; Previously skipped &mdash; you must answer this now</p>
                 <img id="pt-question-img" class="pt-question-img" src="" alt="" />
                 <h3 id="pt-question-text" class="pt-question"></h3>
                 <div id="pt-options" class="pt-options"></div>
-                <button id="pt-next-btn" class="pt-btn pt-btn-primary" disabled>Next</button>
+                <div class="pt-result-actions">
+                    <button id="pt-next-btn" class="pt-btn pt-btn-primary" disabled>Next</button>
+                    <button id="pt-skip-btn" class="pt-btn pt-btn-ghost">Skip Question</button>
+                </div>
             </div>
         </div>
 

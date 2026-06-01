@@ -1385,6 +1385,7 @@ img { display: block; max-width: 100%; }
 }
 .pt-overlay[hidden] { display: none !important; }
 .pt-screen[hidden] { display: none !important; }
+.pt-btn[hidden] { display: none !important; }
 
 .pt-screen {
     width: 100%;
@@ -1601,6 +1602,15 @@ img { display: block; max-width: 100%; }
     border-radius: 2px;
     width: 0%;
     transition: width 0.4s ease;
+}
+
+.pt-skipped-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--yellow);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.65rem;
+    text-align: center;
 }
 
 .pt-progress-text {
