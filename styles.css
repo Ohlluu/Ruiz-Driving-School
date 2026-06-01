@@ -1604,6 +1604,44 @@ img { display: block; max-width: 100%; }
     transition: width 0.4s ease;
 }
 
+.pt-scoreboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+}
+
+.pt-sb-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 0.55rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.pt-sb-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: rgba(255,255,255,0.35);
+}
+
+.pt-sb-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.pt-sb-pass .pt-sb-val   { color: rgba(255,255,255,0.5); }
+.pt-sb-correct .pt-sb-val { color: var(--green); }
+.pt-sb-skipped .pt-sb-val { color: var(--yellow); }
+.pt-sb-incorrect .pt-sb-val { color: #ff6b6b; }
+
 .pt-skipped-label {
     font-size: 0.75rem;
     font-weight: 700;
@@ -1612,6 +1650,56 @@ img { display: block; max-width: 100%; }
     margin-bottom: 0.65rem;
     text-align: center;
 }
+
+.pt-quit-btn {
+    display: block;
+    margin: 0.75rem auto 0;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.pt-quit-btn:hover { color: #ff6b6b; }
+
+.pt-quit-modal {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: 18px;
+}
+.pt-quit-modal[hidden] { display: none !important; }
+.pt-quit-modal-box {
+    background: #1e1e2e;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 2rem 1.75rem;
+    max-width: 320px;
+    text-align: center;
+}
+.pt-quit-modal-msg {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+.pt-quit-modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+.pt-btn-danger {
+    background: #e53e3e;
+    color: #fff;
+    border: none;
+}
+.pt-btn-danger:hover { background: #c53030; }
 
 .pt-progress-text {
     font-size: 0.72rem;

@@ -637,6 +637,24 @@
             <div class="pt-card pt-card-quiz">
                 <div class="pt-progress-bar"><div id="pt-progress-fill" class="pt-progress-fill"></div></div>
                 <p id="pt-progress-text" class="pt-progress-text">Question 1 of 40</p>
+                <div class="pt-scoreboard">
+                    <div class="pt-sb-item pt-sb-pass">
+                        <span class="pt-sb-label">To Pass</span>
+                        <span class="pt-sb-val">32</span>
+                    </div>
+                    <div class="pt-sb-item pt-sb-correct">
+                        <span class="pt-sb-label">Correct</span>
+                        <span class="pt-sb-val" id="sb-correct">0</span>
+                    </div>
+                    <div class="pt-sb-item pt-sb-skipped">
+                        <span class="pt-sb-label">Skipped</span>
+                        <span class="pt-sb-val" id="sb-skipped">0</span>
+                    </div>
+                    <div class="pt-sb-item pt-sb-incorrect">
+                        <span class="pt-sb-label">Incorrect</span>
+                        <span class="pt-sb-val" id="sb-incorrect">0</span>
+                    </div>
+                </div>
                 <p id="pt-skipped-label" class="pt-skipped-label" hidden>&#8629; Previously skipped &mdash; you must answer this now</p>
                 <img id="pt-question-img" class="pt-question-img" src="" alt="" />
                 <h3 id="pt-question-text" class="pt-question"></h3>
@@ -644,6 +662,18 @@
                 <div class="pt-result-actions">
                     <button id="pt-next-btn" class="pt-btn pt-btn-primary" disabled>Next</button>
                     <button id="pt-skip-btn" class="pt-btn pt-btn-ghost">Skip Question</button>
+                </div>
+                <button id="pt-quit-btn" class="pt-quit-btn">Quit Test</button>
+            </div>
+        </div>
+
+        <!-- Quit Confirmation Modal -->
+        <div id="pt-quit-modal" class="pt-quit-modal" hidden>
+            <div class="pt-quit-modal-box">
+                <p class="pt-quit-modal-msg">Are you sure you want to quit? Your progress will be lost.</p>
+                <div class="pt-quit-modal-actions">
+                    <button id="pt-quit-confirm" class="pt-btn pt-btn-danger">Yes, Quit</button>
+                    <button id="pt-quit-cancel" class="pt-btn pt-btn-ghost">Keep Going</button>
                 </div>
             </div>
         </div>

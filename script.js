@@ -657,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('sb-correct').textContent = '0';
         document.getElementById('sb-skipped').textContent = '0';
         document.getElementById('sb-incorrect').textContent = '0';
+        document.getElementById('pt-quit-modal').hidden = true;
         showScreen('quiz');
         renderQuestion();
     }
@@ -784,6 +785,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showScreen('results');
     }
+
+    const quitModal = document.getElementById('pt-quit-modal');
+    document.getElementById('pt-quit-btn').addEventListener('click', () => { quitModal.hidden = false; });
+    document.getElementById('pt-quit-cancel').addEventListener('click', () => { quitModal.hidden = true; });
+    document.getElementById('pt-quit-confirm').addEventListener('click', () => {
+        quitModal.hidden = true;
+        closeOverlay();
+    });
 
     document.getElementById('pt-retake-btn').addEventListener('click', () => showScreen('language'));
     document.getElementById('pt-exit-btn').addEventListener('click', closeOverlay);
