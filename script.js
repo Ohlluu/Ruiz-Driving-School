@@ -172,89 +172,388 @@ document.addEventListener('DOMContentLoaded', () => {
     const questions = {
         en: [
             {
-                q: "In Illinois, what does a flashing red traffic light require you to do?",
+                img: 'pt-images/q1.webp',
+                q: 'You are waiting at an intersection and the traffic signal light changes to green. You may then go ahead:',
                 options: [
-                    "Slow down and proceed carefully",
-                    "Stop completely, then proceed when safe",
-                    "Yield to cross traffic only",
-                    "Stop and wait for the light to turn green"
+                    'Immediately',
+                    'After first yielding the right-of-way to any persons or vehicles that are within the intersection',
+                    'When you think it is safe to do so'
                 ],
                 answer: 1
             },
             {
-                q: "What is the speed limit in Illinois when driving through an alley?",
-                options: ["10 mph", "15 mph", "20 mph", "25 mph"],
-                answer: 1
-            },
-            {
-                q: "In Illinois, you must signal a turn at least how many feet before turning?",
-                options: ["50 feet", "100 feet", "200 feet", "300 feet"],
-                answer: 1
-            },
-            {
-                q: "What does a pennant-shaped yellow sign on the left side of the road indicate?",
+                img: 'pt-images/q2.jpg',
+                q: 'The road surface of a bridge may be dangerous in winter because:',
                 options: [
-                    "Yield ahead",
-                    "No passing zone",
-                    "School crossing ahead",
-                    "Construction zone ahead"
+                    'There may be ice on bridges even when other pavements are clear',
+                    'The bridge surface is warmer',
+                    'None of the above'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q3.webp',
+                q: 'When approaching a railroad grade crossing that does NOT have ANY warning system (such as electric flashing lights or gates), you should:',
+                options: [
+                    'Look, listen, slow down in case you have to stop, and proceed when safe to do so',
+                    'Increase speed and cross tracks as quickly as possible',
+                    'Continue at your normal speed'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q4.jpg',
+                q: 'When there are flashing signals at a railroad crossing and the train clears the crossing, how should you proceed?',
+                options: [
+                    'Follow the vehicle ahead of you',
+                    'After you check to make sure another train is not approaching on another track',
+                    'Just as soon as the train clears the crossing'
                 ],
                 answer: 1
             },
             {
-                q: "In Illinois, when are you required to use your headlights?",
+                img: 'pt-images/q5.jpg',
+                q: 'When you are driving and one of your tires has a blowout, you should:',
                 options: [
-                    "Only between midnight and 4 AM",
-                    "Only on highways and expressways",
-                    "From sunset to sunrise and when visibility is reduced",
-                    "Only when it is actively raining"
-                ],
-                answer: 2
-            }
-        ],
-        es: [
-            {
-                q: "En Illinois, ¿qué te obliga a hacer una luz de tráfico roja intermitente?",
-                options: [
-                    "Reducir la velocidad y proceder con cuidado",
-                    "Detenerse completamente y proceder cuando sea seguro",
-                    "Ceder el paso solo al tráfico cruzado",
-                    "Detenerse y esperar a que el semáforo se ponga verde"
-                ],
-                answer: 1
-            },
-            {
-                q: "¿Cuál es el límite de velocidad en Illinois cuando se conduce por un callejón?",
-                options: ["10 mph", "15 mph", "20 mph", "25 mph"],
-                answer: 1
-            },
-            {
-                q: "En Illinois, ¿con cuántos pies de anticipación debes señalizar una vuelta antes de girar?",
-                options: ["50 pies", "100 pies", "200 pies", "300 pies"],
-                answer: 1
-            },
-            {
-                q: "¿Qué indica un letrero amarillo en forma de banderín al lado izquierdo de la carretera?",
-                options: [
-                    "Cruce de peatones adelante",
-                    "Zona de no adelantamiento",
-                    "Cruce escolar adelante",
-                    "Zona de construcción adelante"
-                ],
-                answer: 1
-            },
-            {
-                q: "En Illinois, ¿cuándo se requiere usar las luces delanteras?",
-                options: [
-                    "Solo entre la medianoche y las 4 AM",
-                    "Solo en autopistas y carreteras expresas",
-                    "Desde el atardecer hasta el amanecer y cuando la visibilidad es reducida",
-                    "Solo cuando llueve activamente"
+                    'Apply the brakes quickly to reduce speed',
+                    'Quickly steer onto the right shoulder',
+                    'Grip the steering wheel firmly, take your foot off the gas pedal, and let the vehicle slow down before you drive onto the shoulder'
                 ],
                 answer: 2
+            },
+            {
+                img: 'pt-images/q6.jpg',
+                q: 'If you are convicted of passing a school bus that is receiving or discharging passengers, you may lose your driver\'s license for at least 3 months.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q7.png',
+                q: 'When a two-lane pavement is marked with a single, solid yellow line on your side of the center line:',
+                options: [
+                    'Construction work is going on ahead, slow down',
+                    'You must not cross the yellow line to pass another vehicle',
+                    'You must slow down and proceed with caution'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q8.webp',
+                q: 'Motorcycles are entitled to use the full width of a traffic lane, the same as a vehicle. Therefore, when you are driving a vehicle and want to pass a motorcycle, you should:',
+                options: [
+                    'Follow the motorcycle without passing it',
+                    'Cautiously pass the motorcycle, sharing the same lane that it is using',
+                    'Not pass the motorcycle in the same lane that it is using, but change lanes and pass the way you would pass another vehicle'
+                ],
+                answer: 2
+            },
+            {
+                img: 'pt-images/q9.webp',
+                q: 'If you are under 18 and you drive after nighttime driving restriction hours, you must have a parent, legal guardian or someone 21 years of age or older with you. Your parents or legal guardian must approve of the person. If these conditions are not met, your license or permit may not be valid during those hours.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q10.jpg',
+                q: 'When there are flashing signals at a railroad crossing and the train clears the crossing, how soon should you proceed?',
+                options: [
+                    'Follow the vehicle ahead of you',
+                    'After you check to make sure another train is not approaching on another track',
+                    'Just as soon as the train clears the crossing'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q11.png',
+                q: 'Drivers are NOT permitted to wear headsets or have a television receiver visible from the driver\'s seat.',
+                options: ['False', 'True'],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q12.webp',
+                q: 'The driver and front-seat passengers (age 8 and above) are required to wear seat safety belts while riding in a motor vehicle on Illinois roadways.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q13.jpg',
+                q: 'Your driving privileges will be revoked in the State of Illinois if you are convicted of:',
+                options: [
+                    'Driving or being in actual physical control of a vehicle while under the influence of alcohol or other drugs (including prescription drugs that may impair driving ability) and/or combinations thereof',
+                    'Leaving the scene of an accident in which you are involved as a driver, if the accident results in death or personal injury',
+                    'Drag racing',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                img: 'pt-images/q14.webp',
+                q: 'You are required by law to yield the right-of-way to any authorized vehicle engaged in highway construction or maintenance that is displaying amber (yellow) oscillating, rotating or flashing lights.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q15.jpg',
+                q: 'Headlights are required:',
+                options: [
+                    'When weather conditions require the use of windshield wipers',
+                    'From dusk to dawn',
+                    'During periods of poor visibility',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                img: 'pt-images/q16.avif',
+                q: 'When a right turn against a red signal light is allowed, the proper way to make the turn is to:',
+                options: [
+                    'Stop, sound your horn to warn other traffic, then make your turn',
+                    'Stop, give the right-of-way to any persons or vehicle within the intersection, then cautiously make your turn',
+                    'Turn quickly to get out of the way of other traffic'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q17.jpg',
+                q: 'When headlights are required, bright lights should be dimmed at least 500 feet before meeting and 300 feet before overtaking another vehicle.',
+                options: ['False', 'True'],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q18.jpg',
+                q: 'When an authorized emergency vehicle that is using its siren and flashing lights approaches your vehicle, you should:',
+                options: [
+                    'Continue at the same speed',
+                    'Pull over to the right-hand edge of the highway and stop if possible',
+                    'Increase your speed'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q19.jpeg',
+                q: 'When driving along the highway and the front right wheel of your vehicle runs off the pavement, you should:',
+                options: [
+                    'Grasp the steering wheel tightly and take your foot off the accelerator',
+                    'Quickly swing back onto the pavement at your normal speed',
+                    'Apply the brakes immediately and swing back onto the pavement quickly'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q20.webp',
+                q: 'A flashing red traffic signal light at an intersection means:',
+                options: [
+                    'Exactly the same thing as a stop sign',
+                    'An emergency vehicle is approaching from your rear',
+                    'You should be careful when going through the intersection'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q21.jpeg',
+                q: 'A driver moving out of an alley, private road, or driveway within an urban area must:',
+                options: [
+                    'Sound his/her horn and exit quickly',
+                    'Stop before reaching the sidewalk and yield to pedestrians and vehicles',
+                    'Stop only if there are vehicles coming down the street'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q22.jpg',
+                q: 'When a traffic light shows both a red light and a green arrow in the direction you wish to turn, you:',
+                options: [
+                    'Must stop and remain stopped until the red light has changed',
+                    'Have the right-of-way over pedestrians in turning in the direction of the arrow',
+                    'May proceed in the direction of the arrow with caution'
+                ],
+                answer: 2
+            },
+            {
+                img: 'pt-images/q23.jpg',
+                q: 'This sign indicates:',
+                options: [
+                    'Construction or maintenance areas ahead',
+                    'Pass with care',
+                    'Look for a detour'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q24.jpg',
+                q: 'This sign indicates:',
+                options: [
+                    'You may make a U-turn after a complete stop',
+                    'U-turns are not allowed',
+                    'Slow down for extreme danger'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q25.gif',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Start slowing down due to traffic controls ahead',
+                    'Yield the right-of-way',
+                    'Be prepared to merge'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q26.jpg',
+                q: 'This sign indicates:',
+                options: [
+                    'Pedestrians are not permitted to cross in this area',
+                    'You are near an intersection',
+                    'Slow down, watch for people crossing the street'
+                ],
+                answer: 2
+            },
+            {
+                img: 'pt-images/q27.png',
+                q: 'This sign indicates:',
+                options: [
+                    'You should move over into the right lane if you are driving slowly',
+                    'Right turns are not allowed at this intersection',
+                    'You may turn right after a complete stop'
+                ],
+                answer: 1
+            },
+            {
+                img: 'pt-images/q28.jpg',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Slow down very slowly',
+                    'Stop only when other traffic is close',
+                    'Always stop completely'
+                ],
+                answer: 2
+            },
+            {
+                img: 'pt-images/q29.jpg',
+                q: 'Illinois law requires children under age 8 to be secured by a restraining system or seat belt when travelling in a motor vehicle:',
+                options: [
+                    'Anywhere in a vehicle',
+                    'In the back seat only',
+                    'In the front seat only',
+                    'Never, this is not a law'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q30.jpeg',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Never pass another vehicle at this location',
+                    'Pass only if you are in a hurry',
+                    'Cross the double stripe and return quickly when overtaking here'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q31.jpg',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Yield to other drivers or pedestrians',
+                    'Expect other drivers or pedestrians to yield to you',
+                    'Always stop'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q32.png',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Always sound your horn',
+                    'Drive around this area',
+                    'Watch for children'
+                ],
+                answer: 2
+            },
+            {
+                img: 'pt-images/q33.png',
+                q: 'This sign indicates:',
+                options: [
+                    'Railroad crossing ahead',
+                    'Always stop',
+                    'Get ready to cross a rural road'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q34.jpg',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Watch out for crossroad traffic',
+                    'Watch for a stop sign',
+                    'Get ready to enter a main highway'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q35.jpg',
+                q: 'This sign indicates:',
+                options: [
+                    'Do not enter',
+                    'Enter the street ahead slowly',
+                    'Parking is not allowed'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q36.jpg',
+                q: 'This sign indicates:',
+                options: [
+                    'You should prepare for a reduction in traffic lanes ahead',
+                    'The road surface changes ahead',
+                    'You are approaching a one-way street'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q37.jpg',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Be ready to yield to other traffic entering your lane',
+                    'Watch especially for emergency vehicles here',
+                    'Stop'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q38.png',
+                q: 'This sign indicates you should:',
+                options: [
+                    'Be prepared to pay special attention for a slow moving vehicle',
+                    'Be prepared to stop',
+                    'Be prepared to change lanes'
+                ],
+                answer: 0
+            },
+            {
+                img: 'pt-images/q39.png',
+                q: 'In order to reinstate full driving privileges after a DRIVING UNDER THE INFLUENCE (DUI) revocation, a person must:',
+                options: [
+                    'Wait a minimum of one year',
+                    'Submit to a professional assessment of alcohol and/or drug use and attend a remedial or rehabilitation program and carry high-risk auto insurance for three years',
+                    'Be approved for reinstatement by the Secretary of State\'s Administrative Hearing Department and pay a reinstatement fee',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                img: 'pt-images/q40.jpg',
+                q: 'When making a left or right turn in a business or residential district, a continuous signal to turn must be given:',
+                options: [
+                    'Not less than 100 feet before turning',
+                    'At least 50 feet from the intersection',
+                    'Only when vehicles are coming toward you'
+                ],
+                answer: 0
             }
         ]
     };
+    questions.es = questions.en;
 
     const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -333,6 +632,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language selection
     document.querySelectorAll('.pt-lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.dataset.lang === 'es') {
+                const label = btn.querySelector('span:last-child');
+                label.textContent = 'Coming Soon!';
+                setTimeout(() => { label.textContent = 'Español'; }, 2000);
+                return;
+            }
             lang = btn.dataset.lang;
             startQuiz();
         });
@@ -355,6 +660,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pt-progress-fill').style.width = `${((qIndex + 1) / total) * 100}%`;
         document.getElementById('pt-progress-text').textContent =
             lang === 'es' ? `Pregunta ${qIndex + 1} de ${total}` : `Question ${qIndex + 1} of ${total}`;
+
+        const imgEl = document.getElementById('pt-question-img');
+        imgEl.src = q.img;
+        imgEl.alt = 'Question ' + (qIndex + 1) + ' reference image';
+
         document.getElementById('pt-question-text').textContent = q.q;
 
         const optContainer = document.getElementById('pt-options');

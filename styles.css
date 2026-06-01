@@ -1404,7 +1404,21 @@ img { display: block; max-width: 100%; }
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
 }
 
-.pt-card-quiz { max-width: 580px; }
+.pt-card-quiz {
+    max-width: 580px;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+.pt-question-img {
+    width: 100%;
+    max-height: 190px;
+    object-fit: contain;
+    border-radius: var(--radius);
+    margin-bottom: 1.1rem;
+    display: block;
+    background: rgba(255,255,255,0.03);
+}
 
 .pt-card-results {
     max-width: 560px;
