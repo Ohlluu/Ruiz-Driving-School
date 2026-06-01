@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('pt-overlay');
     if (!overlay) return;
 
-    const PT_PASSWORD = 'Instructor7';
+    const PT_PASSWORD = 'Instructor711$';
 
     const questions = {
         en: [
