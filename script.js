@@ -654,6 +654,9 @@ document.addEventListener('DOMContentLoaded', () => {
         answeredCount = 0;
         selectedAnswer = -1;
         answered = false;
+        document.getElementById('sb-correct').textContent = '0';
+        document.getElementById('sb-skipped').textContent = '0';
+        document.getElementById('sb-incorrect').textContent = '0';
         showScreen('quiz');
         renderQuestion();
     }
@@ -710,6 +713,10 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (i === idx && idx !== correct) btn.classList.add('incorrect');
         });
 
+        const sbId = idx === correct ? 'sb-correct' : 'sb-incorrect';
+        const sbEl = document.getElementById(sbId);
+        sbEl.textContent = parseInt(sbEl.textContent) + 1;
+
         document.getElementById('pt-next-btn').disabled = false;
         document.getElementById('pt-skip-btn').hidden = true;
     }
@@ -729,6 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const qIdx = queue.shift();
         skippedSet.add(qIdx);
         queue.push(qIdx);
+        const sbSkip = document.getElementById('sb-skipped');
+        sbSkip.textContent = parseInt(sbSkip.textContent) + 1;
         renderQuestion();
     });
 
