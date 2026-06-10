@@ -553,7 +553,388 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         ]
     };
-    questions.es = questions.en;
+    questions.es = [
+        {
+            img: 'pt-images/q1.webp',
+            q: 'Estás esperando en una intersección y el semáforo cambia a verde. Puedes avanzar:',
+            options: [
+                'De inmediato',
+                'Después de ceder el paso a cualquier persona o vehículo que se encuentre dentro de la intersección',
+                'Cuando consideres que es seguro hacerlo'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q2.jpg',
+            q: 'La superficie de un puente puede ser peligrosa en invierno porque:',
+            options: [
+                'Puede haber hielo en los puentes aunque otras superficies estén despejadas',
+                'La superficie del puente es más cálida',
+                'Ninguna de las anteriores'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q3.webp',
+            q: 'Cuando te acerques a un cruce de ferrocarril que NO tiene ningún sistema de advertencia (como luces intermitentes eléctricas o barreras), debes:',
+            options: [
+                'Mirar, escuchar, reducir la velocidad por si tienes que detenerte, y avanzar cuando sea seguro',
+                'Aumentar la velocidad y cruzar las vías lo más rápido posible',
+                'Continuar a tu velocidad normal'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q4.jpg',
+            q: 'Cuando hay señales intermitentes en un cruce de ferrocarril y el tren despeja el cruce, ¿cómo debes proceder?',
+            options: [
+                'Seguir al vehículo que va adelante',
+                'Después de verificar que no se acerca otro tren por otra vía',
+                'En cuanto el tren despeje el cruce'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q5.jpg',
+            q: 'Cuando estás manejando y una de tus llantas revienta, debes:',
+            options: [
+                'Aplicar los frenos rápidamente para reducir la velocidad',
+                'Dirigirte rápidamente al acotamiento derecho',
+                'Sujetar firmemente el volante, quitar el pie del acelerador y dejar que el vehículo disminuya la velocidad antes de dirigirte al acotamiento'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q6.jpg',
+            q: 'Si te declaran culpable de rebasar un autobús escolar que está recogiendo o dejando pasajeros, puedes perder tu licencia de manejo por al menos 3 meses.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q7.png',
+            q: 'Cuando un camino de dos carriles tiene una línea amarilla continua en tu lado de la línea central:',
+            options: [
+                'Hay trabajos de construcción adelante, reduce la velocidad',
+                'No debes cruzar la línea amarilla para rebasar otro vehículo',
+                'Debes reducir la velocidad y avanzar con precaución'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q8.webp',
+            q: 'Las motocicletas tienen derecho a usar el ancho completo de un carril, igual que cualquier vehículo. Por lo tanto, cuando quieres rebasar una motocicleta, debes:',
+            options: [
+                'Seguir a la motocicleta sin rebasarla',
+                'Rebasar la motocicleta con precaución compartiendo el mismo carril que está usando',
+                'No rebasar la motocicleta en el mismo carril, sino cambiar de carril y rebasarla como lo harías con cualquier otro vehículo'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q9.webp',
+            q: 'Si tienes menos de 18 años y manejas después del horario de restricción nocturna, debes ir acompañado de uno de tus padres, tutor legal o alguien de 21 años o más. Tus padres o tutor legal deben aprobar a esa persona. Si no se cumplen estas condiciones, tu licencia o permiso puede no ser válido durante esas horas.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q10.jpg',
+            q: 'Cuando hay señales intermitentes en un cruce de ferrocarril y el tren despeja el cruce, ¿cuándo debes avanzar?',
+            options: [
+                'Seguir al vehículo que va adelante',
+                'Después de verificar que no se acerca otro tren por otra vía',
+                'En cuanto el tren despeje el cruce'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q11.png',
+            q: 'A los conductores NO les está permitido usar audífonos ni tener un televisor visible desde el asiento del conductor.',
+            options: ['Falso', 'Verdadero'],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q12.webp',
+            q: 'El conductor y los pasajeros del asiento delantero (de 8 años en adelante) están obligados a usar cinturón de seguridad al viajar en un vehículo de motor en las carreteras de Illinois.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q13.jpg',
+            q: 'Tus privilegios de manejo serán revocados en el Estado de Illinois si eres declarado culpable de:',
+            options: [
+                'Manejar o tener control físico de un vehículo bajo la influencia del alcohol u otras drogas (incluyendo medicamentos recetados que afecten la capacidad de manejo) y/o combinaciones de estos',
+                'Abandonar el lugar de un accidente en el que estás involucrado como conductor, si el accidente resulta en muerte o lesiones',
+                'Participar en carreras clandestinas',
+                'Todas las anteriores'
+            ],
+            answer: 3
+        },
+        {
+            img: 'pt-images/q14.webp',
+            q: 'La ley te obliga a ceder el paso a cualquier vehículo autorizado que realice trabajos de construcción o mantenimiento en carreteras y que muestre luces ámbar (amarillas) oscilantes, giratorias o intermitentes.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q15.jpg',
+            q: 'Las luces delanteras son obligatorias:',
+            options: [
+                'Cuando las condiciones climáticas requieren el uso de limpiaparabrisas',
+                'Del anochecer al amanecer',
+                'Durante períodos de poca visibilidad',
+                'Todas las anteriores'
+            ],
+            answer: 3
+        },
+        {
+            img: 'pt-images/q16.avif',
+            q: 'Cuando se permite dar vuelta a la derecha con semáforo en rojo, la manera correcta de hacerlo es:',
+            options: [
+                'Detenerse, tocar el claxon para advertir al tráfico, y luego dar la vuelta',
+                'Detenerse, ceder el paso a cualquier persona o vehículo dentro de la intersección, y luego dar la vuelta con precaución',
+                'Dar la vuelta rápidamente para salir del camino del tráfico'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q17.jpg',
+            q: 'Cuando se requieren luces delanteras, las luces altas deben apagarse al menos 500 pies antes de cruzarte con otro vehículo y 300 pies antes de rebasarlo.',
+            options: ['Falso', 'Verdadero'],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q18.jpg',
+            q: 'Cuando un vehículo de emergencia autorizado con sirena y luces intermitentes se acerca a tu vehículo, debes:',
+            options: [
+                'Continuar a la misma velocidad',
+                'Orillarte al lado derecho de la carretera y detenerte si es posible',
+                'Aumentar tu velocidad'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q19.jpeg',
+            q: 'Cuando vas manejando en la carretera y la llanta delantera derecha de tu vehículo se sale del pavimento, debes:',
+            options: [
+                'Sujetar firmemente el volante y quitar el pie del acelerador',
+                'Regresar rápidamente al pavimento a tu velocidad normal',
+                'Aplicar los frenos de inmediato y regresar rápidamente al pavimento'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q20.webp',
+            q: 'Una luz de semáforo roja intermitente en una intersección significa:',
+            options: [
+                'Lo mismo que una señal de alto',
+                'Un vehículo de emergencia se acerca por detrás',
+                'Debes tener cuidado al cruzar la intersección'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q21.jpeg',
+            q: 'Un conductor que sale de un callejón, camino privado o entrada de vehículos en una zona urbana debe:',
+            options: [
+                'Tocar el claxon y salir rápidamente',
+                'Detenerse antes de llegar a la banqueta y ceder el paso a peatones y vehículos',
+                'Detenerse solo si hay vehículos que vienen por la calle'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q22.jpg',
+            q: 'Cuando el semáforo muestra una luz roja y una flecha verde en la dirección en que deseas girar, debes:',
+            options: [
+                'Detenerte y permanecer detenido hasta que la luz roja cambie',
+                'Tienes preferencia sobre los peatones al girar en la dirección de la flecha',
+                'Avanzar en la dirección de la flecha con precaución'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q23.jpg',
+            q: 'Esta señal indica:',
+            options: [
+                'Zona de construcción o mantenimiento adelante',
+                'Rebase con precaución',
+                'Busca un desvío'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q24.jpg',
+            q: 'Esta señal indica:',
+            options: [
+                'Puedes hacer un giro en U después de detenerte completamente',
+                'Los giros en U no están permitidos',
+                'Reduce la velocidad ante peligro extremo'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q25.gif',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Comenzar a reducir la velocidad por controles de tráfico adelante',
+                'Ceder el paso',
+                'Prepararte para incorporarte al tráfico'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q26.jpg',
+            q: 'Esta señal indica:',
+            options: [
+                'Los peatones no pueden cruzar en esta área',
+                'Estás cerca de una intersección',
+                'Reduce la velocidad y presta atención a las personas que cruzan la calle'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q27.png',
+            q: 'Esta señal indica:',
+            options: [
+                'Debes moverte al carril derecho si manejas despacio',
+                'Los giros a la derecha no están permitidos en esta intersección',
+                'Puedes girar a la derecha después de detenerte completamente'
+            ],
+            answer: 1
+        },
+        {
+            img: 'pt-images/q28.jpg',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Reducir la velocidad gradualmente',
+                'Detenerte solo cuando el tráfico está cerca',
+                'Detenerte completamente siempre'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q29.jpg',
+            q: 'La ley de Illinois requiere que los niños menores de 8 años vayan asegurados con un sistema de retención o cinturón de seguridad al viajar en un vehículo de motor:',
+            options: [
+                'En cualquier lugar del vehículo',
+                'Solo en el asiento trasero',
+                'Solo en el asiento delantero',
+                'Nunca, esto no es una ley'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q30.jpeg',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Nunca rebasar otro vehículo en este lugar',
+                'Rebasar solo si tienes prisa',
+                'Cruzar la doble línea y regresar rápidamente al rebasar aquí'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q31.jpg',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Ceder el paso a otros conductores o peatones',
+                'Esperar que otros conductores o peatones te cedan el paso',
+                'Detenerte siempre'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q32.png',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Tocar el claxon siempre',
+                'Rodear esta área',
+                'Estar atento a la presencia de niños'
+            ],
+            answer: 2
+        },
+        {
+            img: 'pt-images/q33.png',
+            q: 'Esta señal indica:',
+            options: [
+                'Cruce de ferrocarril adelante',
+                'Detenerte siempre',
+                'Prepárate para cruzar un camino rural'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q34.jpg',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Estar atento al tráfico en el cruce',
+                'Estar atento a una señal de alto',
+                'Prepararte para incorporarte a una carretera principal'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q35.jpg',
+            q: 'Esta señal indica:',
+            options: [
+                'Prohibido entrar',
+                'Entra a la calle de adelante despacio',
+                'No se permite estacionarse'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q36.jpg',
+            q: 'Esta señal indica:',
+            options: [
+                'Debes prepararte para una reducción de carriles adelante',
+                'La superficie del camino cambia adelante',
+                'Te estás acercando a una calle de un solo sentido'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q37.jpg',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Estar preparado para ceder el paso al tráfico que se incorpora a tu carril',
+                'Estar especialmente atento a vehículos de emergencia aquí',
+                'Detenerte'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q38.png',
+            q: 'Esta señal indica que debes:',
+            options: [
+                'Estar preparado para prestar atención a un vehículo de movimiento lento',
+                'Estar preparado para detenerte',
+                'Estar preparado para cambiar de carril'
+            ],
+            answer: 0
+        },
+        {
+            img: 'pt-images/q39.png',
+            q: 'Para recuperar los privilegios completos de manejo después de una revocación por MANEJAR BAJO LA INFLUENCIA (DUI), la persona debe:',
+            options: [
+                'Esperar un mínimo de un año',
+                'Someterse a una evaluación profesional del consumo de alcohol y/o drogas, asistir a un programa de rehabilitación y llevar seguro de auto de alto riesgo por tres años',
+                'Obtener la aprobación del Departamento de Audiencias Administrativas del Secretario de Estado y pagar una cuota de restablecimiento',
+                'Todas las anteriores'
+            ],
+            answer: 3
+        },
+        {
+            img: 'pt-images/q40.jpg',
+            q: 'Al girar a la izquierda o a la derecha en una zona comercial o residencial, se debe indicar la intención de girar de manera continua:',
+            options: [
+                'No menos de 100 pies antes de girar',
+                'Al menos 50 pies de la intersección',
+                'Solo cuando los vehículos se acercan hacia ti'
+            ],
+            answer: 0
+        }
+    ];
 
     const LETTERS = ['A', 'B', 'C', 'D'];
 
@@ -635,12 +1016,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language selection
     document.querySelectorAll('.pt-lang-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            if (btn.dataset.lang === 'es') {
-                const label = btn.querySelector('span:last-child');
-                label.textContent = 'Coming Soon!';
-                setTimeout(() => { label.textContent = 'Español'; }, 2000);
-                return;
-            }
             lang = btn.dataset.lang;
             startQuiz();
         });
