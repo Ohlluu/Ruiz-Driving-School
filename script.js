@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 answer: 3
             },
             {
-                img: 'pt-images/q16.avif',
+                img: 'pt-images/q16.jpg',
                 q: 'When a right turn against a red signal light is allowed, the proper way to make the turn is to:',
                 options: [
                     'Stop, sound your horn to warn other traffic, then make your turn',
@@ -687,7 +687,7 @@ document.addEventListener('DOMContentLoaded', () => {
             answer: 3
         },
         {
-            img: 'pt-images/q16.avif',
+            img: 'pt-images/q16.jpg',
             q: 'Cuando se permite dar vuelta a la derecha con semáforo en rojo, la manera correcta de hacerlo es:',
             options: [
                 'Detenerse, tocar el claxon para advertir al tráfico, y luego dar la vuelta',
