@@ -720,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Regresar rápidamente al pavimento a tu velocidad normal',
                 'Aplicar los frenos de inmediato y regresar rápidamente al pavimento'
             ],
-            answer: 0
+            answer: 2
         },
         {
             img: 'pt-images/q20.webp',
