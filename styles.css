@@ -1390,7 +1390,7 @@ img { display: block; max-width: 100%; }
 }
 .pt-footer-link:hover { color: rgba(255,255,255,0.35); }
 
-@media (min-width: 769px) and (max-width: 1100px) {
+@media (min-width: 769px) and (max-width: 1366px) {
     .floating-action-btn { bottom: 80px; }
 }
 
