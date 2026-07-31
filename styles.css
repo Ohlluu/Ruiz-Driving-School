@@ -1394,6 +1394,10 @@ img { display: block; max-width: 100%; }
     .floating-action-btn { bottom: 80px; }
 }
 
+@media (max-width: 768px) {
+    .pt-footer-link { display: none; }
+}
+
 /* =============================================
    PRACTICE TEST OVERLAY
    ============================================= */
