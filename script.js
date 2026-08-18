@@ -1316,11 +1316,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // top to bottom). `name` is the number from SIGN_NAMES above. Art is reused
     // from PT1's sign questions where it matches.
     //
-    // Two signs have no art on the site yet, marked `pendingArt` so they show a
-    // labelled placeholder instead of a broken image. Save the files at exactly
-    // these paths and delete the `pendingArt: true` flag to switch them on:
-    //     pt-images/sign11-winding-road.png
-    //     pt-images/sign15-side-road.png
+    // Winding road (11) and side road (15) had no art in PT1, so those two files
+    // were added for this section. Any future sign without art can be marked
+    // `pendingArt: true` to show a labelled placeholder instead of a broken
+    // image until its file lands.
     // Names 4 (Merge) and 7 (Stop) are in the list but not pictured on the
     // sheet, so they act as distractors only.
     const SIGN_ITEMS = [
@@ -1329,8 +1328,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { img: 'pt-images/q30.jpeg',                   name: 3  },
         { img: 'pt-images/q31.jpg',                    name: 6  },
         { img: 'pt-images/q36.jpg',                    name: 1  },
-        { img: 'pt-images/sign11-winding-road.png',    name: 11, pendingArt: true },
-        { img: 'pt-images/sign15-side-road.png',       name: 15, pendingArt: true },
+        { img: 'pt-images/sign11-winding-road.png',    name: 11 },
+        { img: 'pt-images/sign15-side-road.jpg',        name: 15 },
         { img: 'pt-images/q23.jpg',                    name: 17 },
         { img: 'pt-images/q33.png',                    name: 9  },
         { img: 'pt-images/q24.jpg',                    name: 2  },
