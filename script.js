@@ -936,10 +936,435 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const LETTERS = ['A', 'B', 'C', 'D'];
+    // =============================================
+    // PRACTICE TEST 2
+    // Transcribed verbatim from the scanned "ENGLISH" sheet (front page),
+    // including answers exactly as marked on the paper.
+    //
+    // STAGE 1: front page, questions 1-28, English only.
+    // TO ADD THE BACK PAGE: append objects to questions2.en below. Nothing
+    // else needs to change — question count, progress text and the "To Pass"
+    // figure are all derived from array length.
+    // TO ADD SPANISH: fill questions2.es with a parallel array in the same
+    // order. Until it has entries, Spanish falls back to English (see getBank).
+    //
+    // NOTE: several marked answers reflect pre-1997 Illinois law (.10% BAC,
+    // age-6 belt/restraint rules) and Q6 marks an unsafe recovery technique.
+    // Left as scanned per instruction — flagged for the correction pass.
+    // =============================================
+    const questions2 = {
+        en: [
+            {
+                q: 'It is unlawful for any person to leave the roadway and travel across private property to avoid an official traffic control device.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When you come to a stop sign, you must stop your vehicle:',
+                options: [
+                    'As close to the stop sign as possible',
+                    'At a marked stop line, before entering the crosswalk, or before entering the intersection if there is no crosswalk',
+                    'At a place near the intersection, providing you come to a complete stop'
+                ],
+                answer: 1
+            },
+            {
+                q: 'When there are flashing signals at a railroad crossing and the train clears the crossing, how soon should you proceed?',
+                options: [
+                    'Just as soon as the train clears the crossing',
+                    'After you check to make sure another train is not approaching on another track',
+                    'Follow the vehicle ahead of you'
+                ],
+                answer: 1
+            },
+            {
+                q: 'When an authorized emergency vehicle that is using its siren and flashing lights approaches your vehicle, you should:',
+                options: [
+                    'Increase your speed',
+                    'Continue at the same speed',
+                    'Pull over to the right-hand edge of the highway and stop, if possible'
+                ],
+                answer: 2
+            },
+            {
+                q: 'When passing another vehicle, you should not cut back into the right lane until you can see the vehicle that you just passed in your rearview mirror.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When driving along the highway and the front right wheel of your vehicle runs off the pavement, you should:',
+                options: [
+                    'Grasp the steering wheel tightly and take your foot off the accelerator',
+                    'Apply the brakes immediately and swing back onto the pavement quickly',
+                    'Quickly swing back onto the pavement at your normal speed'
+                ],
+                answer: 2
+            },
+            {
+                q: 'The driver and front-seat passengers (age 6 and above) are required to wear seat safety belts while riding in a motor vehicle on Illinois roadways.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'Illinois residents must:',
+                options: [
+                    'Insure their vehicles for liability',
+                    'Carry proof of insurance in the vehicle',
+                    'Produce proof of insurance when stopped for a traffic violation, during a random check, or if you are involved in a traffic accident',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'When a two-lane pavement is marked with a single, solid yellow line on your side of the center line:',
+                options: [
+                    'You must slow down and proceed with caution',
+                    'Construction work is going on ahead, slow down',
+                    'You must not cross the yellow line to pass another vehicle'
+                ],
+                answer: 2
+            },
+            {
+                q: 'When a school bus is stopped on a two-lane or four-lane highway and its red warning lights are flashing and its stop signal arm is extended, you must:',
+                options: [
+                    'Stop before meeting or overtaking a school bus loading or unloading passengers on a two-lane highway',
+                    'You do not always need to stop when meeting a stopped school bus on a roadway with four or more lanes if at least 2 lanes of traffic travel in the opposite direction',
+                    'You do not need to stop if you are traveling on a four-lane highway in the opposite direction of a school bus, but you should drive cautiously',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Your driving privileges will be revoked in the State of Illinois if you are convicted of:',
+                options: [
+                    'Leaving the scene of an accident in which you are involved as a driver, if the accident results in death or personal injury',
+                    'Drag racing',
+                    'Driving or being in actual physical control of a vehicle while under the influence of alcohol or other drugs (including prescription drugs that may impair driving ability) and/or combinations thereof',
+                    'All of the above',
+                    'None of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'When a right turn against a red signal light is allowed, the proper way to make the turn is to:',
+                options: [
+                    'Turn quickly to get out of the way of other traffic',
+                    'Stop, give the right-of-way to any persons or vehicles within the intersection, then cautiously make your turn',
+                    'Stop, sound your horn to warn other traffic, then make your turn'
+                ],
+                answer: 1
+            },
+            {
+                q: 'When headlights are required, bright lights should be dimmed at least 500 feet before meeting and 300 feet before overtaking another vehicle.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'If you MUST drive during foggy weather, you should turn on the low-beam headlights and:',
+                options: [
+                    'Drive at a speed that will allow you to stop within your field of vision',
+                    'Flash your lights routinely',
+                    'Keep your foot on the brake pedal so your taillights will be seen more easily'
+                ],
+                answer: 0
+            },
+            {
+                q: 'When approaching a railroad grade crossing that does NOT have ANY warning system (such as electric flashing lights or gates), you should:',
+                options: [
+                    'Increase speed and cross tracks as quickly as possible',
+                    'Continue at your normal speed',
+                    'Look, listen, slow down in case you have to stop, and proceed when safe to do so'
+                ],
+                answer: 2
+            },
+            {
+                q: 'It is legal for you to pass on the shoulder of the road.',
+                options: ['True', 'False'],
+                answer: 1
+            },
+            {
+                q: 'You are waiting at an intersection and the traffic signal light changes to green. You may then go ahead:',
+                options: [
+                    'Immediately',
+                    'When you think it is safe to do so',
+                    'After first yielding the right-of-way to any persons or vehicles that are within the intersection'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Your driver\'s license will be suspended if, after being arrested for DRIVING UNDER THE INFLUENCE of alcohol and/or drugs (DUI):',
+                options: [
+                    'You take a chemical test (breath, blood or urine) and register an amount of alcohol equal to or over the legal level of intoxication (.10%)',
+                    'You refuse to take a chemical test (breath, blood or urine)',
+                    'You take a chemical test and register any trace of a controlled substance or cannabis (marijuana)',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Motorcycles, though smaller and lighter in weight, have the same right-of-way privileges as other vehicles. Special observance should be given to motorcyclists when they approach an intersection, a railroad crossing, bridge or when bad weather occurs.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'A person who REFUSES to submit to a chemical test, or tests, of his/her blood, breath or urine for the purpose of determining the level of alcohol and/or drug content:',
+                options: [
+                    'Will receive a driver\'s license suspension for six months on first offense',
+                    'Will receive a driver\'s license suspension for 24 months for second or more refusals within a 5-year period',
+                    'May have this used as evidence against him/her in court if charged with DRIVING UNDER THE INFLUENCE of alcohol and/or drugs (DUI)',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'When driving on a slippery road and the rear end of your vehicle starts to skid, you should:',
+                options: [
+                    'Turn the front wheels in the direction of the skid',
+                    'Hold the wheel firmly and steer straight ahead, braking gradually',
+                    'Apply the brakes quickly'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Drivers are NOT permitted to wear headsets or have a television receiver visible from the driver\'s seat.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'Which of the following is the single greatest factor in fatal motor vehicle accidents?',
+                options: [
+                    'Alcohol',
+                    'Bad road conditions',
+                    'Bad weather conditions',
+                    'Mechanical problems'
+                ],
+                answer: 0
+            },
+            {
+                q: 'When you are driving and one of your tires has a blowout, you should:',
+                options: [
+                    'Apply the brakes quickly to reduce speed',
+                    'Grip the steering wheel firmly, take your foot off the gas pedal, and let the vehicle slow down before you drive onto the shoulder',
+                    'Quickly steer onto the right shoulder'
+                ],
+                answer: 1
+            },
+            {
+                q: 'The road surface of a bridge may be dangerous in winter because:',
+                options: [
+                    'There may be ice on bridges even when other pavements are clear',
+                    'The bridge surface is warmer',
+                    'None of the above'
+                ],
+                answer: 0
+            },
+            {
+                q: 'A driver moving out of an alley, private road, or driveway within an urban area must:',
+                options: [
+                    'Stop only if there are vehicles coming down the street',
+                    'Stop before reaching the sidewalk and yield to pedestrians and vehicles before proceeding',
+                    'Sound his/her horn and exit quickly'
+                ],
+                answer: 1
+            },
+            {
+                q: 'A flashing red traffic signal light at an intersection means:',
+                options: [
+                    'You should be careful when going through the intersection',
+                    'Exactly the same thing as a stop sign',
+                    'An emergency vehicle is approaching from your rear'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Illinois law requires children under age 6 to be secured by a restraining system or seat belt when traveling in a motor vehicle:',
+                options: [
+                    'Anywhere in the vehicle',
+                    'In the front seat only',
+                    'In the back seat only',
+                    'Never, this is not a law'
+                ],
+                answer: 0
+            },
+            // ---- back page, questions 29-40 ----
+            {
+                q: 'When a traffic light shows both a red light and a green arrow in the direction you wish to turn, you:',
+                options: [
+                    'Must stop and remain stopped until the red light has changed',
+                    'Have the right-of-way over pedestrians in turning in the direction of the arrow',
+                    'May proceed in the direction of the arrow with caution'
+                ],
+                answer: 2
+            },
+            {
+                q: 'With few exceptions, a person may not drive a motor vehicle (even if borrowed or rented for a short period of time) unless the operator holds a valid driver\'s license that is properly classified for that kind and type of vehicle.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'Headlights are required:',
+                options: [
+                    'From dusk to dawn',
+                    'During periods of poor visibility',
+                    'When weather conditions require the use of windshield wipers',
+                    'All of the above'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Many intersection accidents occur because drivers FAIL to slow down and look carefully to the left and right before entering the intersection.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'In order to reinstate full driving privileges after a DRIVING UNDER THE INFLUENCE (DUI) revocation, a person must:',
+                options: [
+                    'Submit to a professional assessment of alcohol and/or drug use and attend a remedial or rehabilitation program',
+                    'Carry high-risk auto insurance for three years',
+                    'Be approved for reinstatement by a Secretary of State Hearing Officer and pay a $60 reinstatement fee',
+                    'Wait a minimum of one year',
+                    'All of the above'
+                ],
+                answer: 4
+            },
+            {
+                q: 'If your vehicle starts to skid on water (hydroplane), you should:',
+                options: [
+                    'Turn your wheel slightly to the right and brake gently',
+                    'Turn your ignition off and coast to a stop',
+                    'Take your foot off the accelerator and let your vehicle slow down'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Motorcycles are entitled to use the full width of a traffic lane, the same as a vehicle. Therefore, when you are driving a vehicle and want to pass a motorcycle, you should:',
+                options: [
+                    'Cautiously pass the motorcycle, sharing the same lane that it is using',
+                    'Follow the motorcycle without passing it',
+                    'Do not pass the motorcycle in the same lane that it is using, but change lanes and pass the way you would pass another vehicle'
+                ],
+                answer: 2
+            },
+            {
+                q: 'You are required by law to yield the right-of-way to any authorized vehicle engaged in highway construction or maintenance that is displaying amber (yellow) oscillating, rotating or flashing lights.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                // Printed age was struck out on the sheet; "21 years" written in by hand.
+                q: 'If you are under 17 and you drive after curfew hours, you must have a parent, legal guardian or someone 21 years of age or older with you. Your parents or legal guardian must approve of the person. If these conditions are not met, your license or permit may not be valid during those hours.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When making a left or right turn in a business or residential district, a continuous signal to turn must be given:',
+                options: [
+                    'Not less than 100 feet before turning',
+                    'At least 50 feet from the intersection',
+                    'Only when vehicles are coming toward you'
+                ],
+                answer: 0
+            },
+            {
+                // Printed duration was struck out on the sheet; "3 MONTHS" written in by hand.
+                q: 'If you are convicted of passing a school bus that is receiving or discharging passengers, you may lose your driver\'s license for at least 3 months.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'Most rear end collisions are caused by:',
+                options: [
+                    'The vehicle in front stopping too quickly',
+                    'The vehicle in back following too closely',
+                    'Dangerous road conditions'
+                ],
+                answer: 1
+            }
+        ],
+        es: []
+    };
+
+    // =============================================
+    // PT2 — SIGNS matching section (questions 41-55)
+    //
+    // The sheet gives students one list of 17 sign names and 15 pictured signs,
+    // and they write the matching number under each sign. Each sign therefore
+    // becomes one question offering ALL 17 names, numbered 1-17 rather than
+    // lettered, so it mirrors the paper.
+    // =============================================
+    const SIGN_NAMES = [
+        'Reduction in Lanes',                        //  1
+        'No U Turn',                                 //  2
+        'No Passing Zone',                           //  3
+        'Merge',                                     //  4
+        'Crossroad',                                 //  5
+        'Yield Right of Way',                        //  6
+        'Stop',                                      //  7
+        'Slow Moving Vehicle',                       //  8
+        'Railroad Warning',                          //  9
+        'Pedestrian Crossing',                       // 10
+        'Winding Road',                              // 11
+        'No Right Turn',                             // 12
+        'Signal Ahead',                              // 13
+        'School Zone & School Crossing',             // 14
+        'Side Road',                                 // 15
+        'Do Not Enter',                              // 16
+        'Road Construction and Maintenance Area'     // 17
+    ];
+
+    // The 15 signs pictured on the sheet, in its grid order (left to right,
+    // top to bottom). `name` is the number from SIGN_NAMES above. Art is reused
+    // from PT1's sign questions where it matches.
+    //
+    // Two signs have no art on the site yet, marked `pendingArt` so they show a
+    // labelled placeholder instead of a broken image. Save the files at exactly
+    // these paths and delete the `pendingArt: true` flag to switch them on:
+    //     pt-images/sign11-winding-road.png
+    //     pt-images/sign15-side-road.png
+    // Names 4 (Merge) and 7 (Stop) are in the list but not pictured on the
+    // sheet, so they act as distractors only.
+    const SIGN_ITEMS = [
+        { img: 'pt-images/q25.gif',                    name: 13 },
+        { img: 'pt-images/q26.jpg',                    name: 10 },
+        { img: 'pt-images/q30.jpeg',                   name: 3  },
+        { img: 'pt-images/q31.jpg',                    name: 6  },
+        { img: 'pt-images/q36.jpg',                    name: 1  },
+        { img: 'pt-images/sign11-winding-road.png',    name: 11, pendingArt: true },
+        { img: 'pt-images/sign15-side-road.png',       name: 15, pendingArt: true },
+        { img: 'pt-images/q23.jpg',                    name: 17 },
+        { img: 'pt-images/q33.png',                    name: 9  },
+        { img: 'pt-images/q24.jpg',                    name: 2  },
+        { img: 'pt-images/q35.jpg',                    name: 16 },
+        { img: 'pt-images/q38.png',                    name: 8  },
+        { img: 'pt-images/q34.jpg',                    name: 5  },
+        { img: 'pt-images/q27.png',                    name: 12 },
+        { img: 'pt-images/q32.png',                    name: 14 }
+    ];
+
+    SIGN_ITEMS.forEach(sign => {
+        questions2.en.push({
+            img: sign.img,
+            q: 'Match this sign to its name:',
+            options: SIGN_NAMES,
+            answer: sign.name - 1,
+            numbered: true,  // render options as 1-17, and lay them out in a grid
+            pendingArt: !!sign.pendingArt
+        });
+    });
+
+    // 'E' supports PT2's two 5-option questions (Q11, which keeps the sheet's
+    // "None of the above", and Q33). PT1 is unaffected — it has none.
+    const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+
+    // Signs questions are numbered 1-17 to match the printed list students
+    // work from; everything else keeps the A/B/C lettering.
+    function optLabel(q, i) {
+        return q.numbered ? String(i + 1) : LETTERS[i];
+    }
 
     // State
     let lang = 'en';
+    let currentTest = 1;
     let queue = [];
     let skippedSet = new Set();
     let answersMap = {};
@@ -960,7 +1385,18 @@ document.addEventListener('DOMContentLoaded', () => {
         screens[name].hidden = false;
     }
 
-    function openOverlay() {
+    // Returns the question array for the active test + language.
+    // PT2 has no Spanish yet, so Spanish falls back to English rather than
+    // handing the quiz an empty array. Remove the fallback once questions2.es
+    // is populated.
+    function getBank() {
+        const bank = currentTest === 2 ? questions2 : questions;
+        const set = bank[lang];
+        return (set && set.length) ? set : bank.en;
+    }
+
+    function openOverlay(testNum) {
+        currentTest = testNum;
         overlay.hidden = false;
         document.body.style.overflow = 'hidden';
         document.getElementById('pt-password-input').value = '';
@@ -974,10 +1410,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    // Open via PT link
+    // Open via PT links — each link picks its test, then password → language → quiz
     document.getElementById('pt-link').addEventListener('click', e => {
         e.preventDefault();
-        openOverlay();
+        openOverlay(1);
+    });
+
+    document.getElementById('pt2-link').addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay(2);
     });
 
     // Close buttons
@@ -1022,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function startQuiz() {
-        const total = questions[lang].length;
+        const total = getBank().length;
         queue = Array.from({ length: total }, (_, i) => i);
         skippedSet = new Set();
         answersMap = {};
@@ -1032,13 +1473,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('sb-correct').textContent = '0';
         document.getElementById('sb-skipped').textContent = '0';
         document.getElementById('sb-incorrect').textContent = '0';
+        // Pass mark is 80% of however many questions this test has
+        document.getElementById('sb-topass').textContent = Math.ceil(total * 0.8);
         document.getElementById('pt-quit-modal').hidden = true;
         showScreen('quiz');
         renderQuestion();
     }
 
     function renderQuestion() {
-        const qs = questions[lang];
+        const qs = getBank();
         const qIdx = queue[0];
         const q = qs[qIdx];
         const total = qs.length;
@@ -1053,18 +1496,49 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('pt-skipped-label').hidden = !wasSkipped;
         document.getElementById('pt-skip-btn').hidden = wasSkipped;
 
+        // Text-only questions (PT2) carry no `img` — pull the element out of the
+        // layout instead of leaving a broken-image icon behind. If a path is set
+        // but the file is missing (sign art not added yet), fall back to a
+        // labelled placeholder so the question is still answerable.
         const imgEl = document.getElementById('pt-question-img');
-        imgEl.src = q.img;
-        imgEl.alt = 'Question ' + (qIdx + 1) + ' reference image';
+        const phEl = document.getElementById('pt-question-placeholder');
+        imgEl.onerror = null;
+        if (q.pendingArt) {
+            // Art we know isn't here yet — show the placeholder outright rather
+            // than loading a missing file and flashing a broken image first.
+            imgEl.removeAttribute('src');
+            imgEl.alt = '';
+            imgEl.hidden = true;
+            phEl.textContent = 'Sign image coming soon';
+            phEl.hidden = false;
+        } else if (q.img) {
+            imgEl.onerror = () => {
+                imgEl.onerror = null;
+                imgEl.hidden = true;
+                phEl.textContent = 'Sign image not available yet';
+                phEl.hidden = false;
+            };
+            phEl.hidden = true;
+            imgEl.src = q.img;
+            imgEl.alt = 'Question ' + (qIdx + 1) + ' reference image';
+            imgEl.hidden = false;
+        } else {
+            imgEl.removeAttribute('src');
+            imgEl.alt = '';
+            imgEl.hidden = true;
+            phEl.hidden = true;
+        }
 
         document.getElementById('pt-question-text').textContent = q.q;
 
         const optContainer = document.getElementById('pt-options');
         optContainer.innerHTML = '';
+        // 17 sign names would make an absurdly tall card in one column
+        optContainer.classList.toggle('pt-options-grid', !!q.numbered);
         q.options.forEach((opt, i) => {
             const btn = document.createElement('button');
             btn.className = 'pt-option';
-            btn.innerHTML = `<span class="pt-option-letter">${LETTERS[i]}</span><span class="pt-option-text">${opt}</span>`;
+            btn.innerHTML = `<span class="pt-option-letter">${optLabel(q, i)}</span><span class="pt-option-text">${opt}</span>`;
             btn.addEventListener('click', () => selectAnswer(i));
             optContainer.appendChild(btn);
         });
@@ -1082,7 +1556,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedAnswer = idx;
 
         const opts = document.querySelectorAll('.pt-option');
-        const correct = questions[lang][queue[0]].answer;
+        const correct = getBank()[queue[0]].answer;
         opts[idx].classList.add(idx === correct ? 'correct' : 'selected');
         opts.forEach((btn, i) => {
             if (i === correct) btn.classList.add('correct');
@@ -1118,7 +1592,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showResults() {
-        const qs = questions[lang];
+        const qs = getBank();
         let score = 0;
         qs.forEach((q, i) => { if (answersMap[i] === q.answer) score++; });
 
@@ -1138,14 +1612,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const userAns = answersMap[i];
             const correct = userAns === q.answer;
             const wrongCorrectLine = !correct
-                ? `<em>${lang === 'es' ? 'Correcto' : 'Correct'}: ${LETTERS[q.answer]}. ${q.options[q.answer]}</em>`
+                ? `<em>${lang === 'es' ? 'Correcto' : 'Correct'}: ${optLabel(q, q.answer)}. ${q.options[q.answer]}</em>`
                 : '';
             return `
                 <div class="pt-review-item">
                     <div class="pt-review-icon ${correct ? 'correct' : 'incorrect'}">${correct ? '&#10003;' : '&#10007;'}</div>
                     <div>
                         <strong>${q.q}</strong>
-                        ${lang === 'es' ? 'Tu respuesta' : 'Your answer'}: ${LETTERS[userAns]}. ${q.options[userAns]}
+                        ${lang === 'es' ? 'Tu respuesta' : 'Your answer'}: ${optLabel(q, userAns)}. ${q.options[userAns]}
                         ${wrongCorrectLine}
                     </div>
                 </div>

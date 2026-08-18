@@ -1390,6 +1390,18 @@ img { display: block; max-width: 100%; }
 }
 .pt-footer-link:hover { color: rgba(255,255,255,0.35); }
 
+/* PT1 / PT2 sit together at the footer's right edge */
+.pt-footer-links {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+/* PT2 in red to distinguish it from PT1. Specificity must beat
+   `.footer-bottom a` (0-1-1), which otherwise forces both links yellow. */
+.footer-bottom .pt-footer-link-2 { color: rgba(227, 28, 37, 0.55); }
+.footer-bottom .pt-footer-link-2:hover { color: var(--red); }
+
 @media (min-width: 769px) and (max-width: 1366px) {
     .floating-action-btn { bottom: 80px; }
 }
@@ -1814,6 +1826,48 @@ img { display: block; max-width: 100%; }
 .pt-option.incorrect .pt-option-letter { background: var(--red); color: var(--white); }
 
 .pt-option-text { flex: 1; }
+
+/* Signs matching: 17 options in two columns so the card stays a sane height */
+.pt-options.pt-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+.pt-options-grid .pt-option {
+    padding: 0.7rem 0.8rem;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    align-items: flex-start;
+}
+.pt-options-grid .pt-option-letter {
+    width: 22px;
+    height: 22px;
+    font-size: 0.68rem;
+}
+@media (max-width: 560px) {
+    .pt-options.pt-options-grid { grid-template-columns: 1fr; }
+}
+
+/* `display: block/flex` below outranks the UA's `[hidden] { display: none }`,
+   so both need an explicit hidden rule or they render even when hidden. */
+.pt-question-img[hidden],
+.pt-question-placeholder[hidden] { display: none; }
+
+/* Stand-in when a question's image file isn't on the site yet */
+.pt-question-placeholder {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.38);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.1rem;
+}
 
 /* Results screen */
 .pt-score-display {
