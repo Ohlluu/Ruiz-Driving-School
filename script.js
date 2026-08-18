@@ -337,7 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Quickly swing back onto the pavement at your normal speed',
                     'Apply the brakes immediately and swing back onto the pavement quickly'
                 ],
-                answer: 1
+                // Corrected: the sheet marked swinging back at normal speed, which
+                // risks an overcorrection rollover. Ease off and slow first.
+                answer: 0
             },
             {
                 img: 'pt-images/q20.webp',
@@ -720,7 +722,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Regresar rápidamente al pavimento a tu velocidad normal',
                 'Aplicar los frenos de inmediato y regresar rápidamente al pavimento'
             ],
-            answer: 1
+            // Corrected: see the English version of this question.
+            answer: 0
         },
         {
             img: 'pt-images/q20.webp',
@@ -946,11 +949,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // text and the "To Pass" figure all derive from array length, so appending
     // or removing questions needs no other change.
     //
-    // NOTE: the English sheet is the older revision — several marked answers
-    // reflect pre-1997 Illinois law (.10% BAC, age-6 belt/restraint rules)
-    // where the Spanish sheet gives the corrected values (.08%, age 8), and
-    // both sheets mark an unsafe recovery technique for the wheel-off-pavement
-    // question. Left as scanned per instruction — for the correction pass.
+    // NOTE: the English sheet is the older revision and carried several stale
+    // values (.10% BAC, age-6 belt/restraint rules, six/24-month refusal
+    // suspensions, a $60 reinstatement fee). These have been corrected to
+    // current Illinois law, which also brings them into line with the Spanish
+    // sheet. Both sheets also marked an unsafe answer for the
+    // wheel-off-pavement question; that is corrected too. Every correction is
+    // flagged with an inline comment at the line it changes.
     // =============================================
     const questions2 = {
         en: [
@@ -998,10 +1003,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Apply the brakes immediately and swing back onto the pavement quickly',
                     'Quickly swing back onto the pavement at your normal speed'
                 ],
-                answer: 2
+                // Corrected: both sheets marked swinging back at normal speed, which
+                // risks an overcorrection rollover. Ease off and slow first.
+                answer: 0
             },
             {
-                q: 'The driver and front-seat passengers (age 6 and above) are required to wear seat safety belts while riding in a motor vehicle on Illinois roadways.',
+                // Corrected from the sheet's "age 6" — Illinois sets this at 8.
+                q: 'The driver and front-seat passengers (age 8 and above) are required to wear seat safety belts while riding in a motor vehicle on Illinois roadways.',
                 options: ['True', 'False'],
                 answer: 0
             },
@@ -1094,7 +1102,8 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 q: 'Your driver\'s license will be suspended if, after being arrested for DRIVING UNDER THE INFLUENCE of alcohol and/or drugs (DUI):',
                 options: [
-                    'You take a chemical test (breath, blood or urine) and register an amount of alcohol equal to or over the legal level of intoxication (.10%)',
+                    // Corrected from the sheet's .10% — Illinois dropped to .08% in 1997.
+                    'You take a chemical test (breath, blood or urine) and register an amount of alcohol equal to or over the legal level of intoxication (.08%)',
                     'You refuse to take a chemical test (breath, blood or urine)',
                     'You take a chemical test and register any trace of a controlled substance or cannabis (marijuana)',
                     'All of the above'
@@ -1109,8 +1118,12 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 q: 'A person who REFUSES to submit to a chemical test, or tests, of his/her blood, breath or urine for the purpose of determining the level of alcohol and/or drug content:',
                 options: [
-                    'Will receive a driver\'s license suspension for six months on first offense',
-                    'Will receive a driver\'s license suspension for 24 months for second or more refusals within a 5-year period',
+                    // Corrected from the sheet's six / 24 months. Illinois statutory
+                    // summary suspension for refusal is 12 months for a first
+                    // offender and 36 for a non-first offender, matching the
+                    // Spanish sheet's figures.
+                    'Will receive a driver\'s license suspension for 12 months on first offense',
+                    'Will receive a driver\'s license suspension for 36 months for second or more refusals within a 5-year period',
                     'May have this used as evidence against him/her in court if charged with DRIVING UNDER THE INFLUENCE of alcohol and/or drugs (DUI)',
                     'All of the above'
                 ],
@@ -1177,7 +1190,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 answer: 1
             },
             {
-                q: 'Illinois law requires children under age 6 to be secured by a restraining system or seat belt when traveling in a motor vehicle:',
+                // Corrected from the sheet's "under age 6" — Illinois sets this at 8.
+                q: 'Illinois law requires children under age 8 to be secured by a restraining system or seat belt when traveling in a motor vehicle:',
                 options: [
                     'Anywhere in the vehicle',
                     'In the front seat only',
@@ -1221,7 +1235,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 options: [
                     'Submit to a professional assessment of alcohol and/or drug use and attend a remedial or rehabilitation program',
                     'Carry high-risk auto insurance for three years',
-                    'Be approved for reinstatement by a Secretary of State Hearing Officer and pay a $60 reinstatement fee',
+                    // Dollar figure dropped rather than updated — the sheet's $60 is
+                    // long out of date and PT1 and the Spanish sheet both state the
+                    // fee without an amount, so the claim stays true as fees change.
+                    'Be approved for reinstatement by a Secretary of State Hearing Officer and pay a reinstatement fee',
                     'Wait a minimum of one year',
                     'All of the above'
                 ],
@@ -1516,7 +1533,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     'aplicar inmediatamente los frenos y volver al pavimento rápidamente',
                     'volver rápidamente al pavimento a la velocidad normal'
                 ],
-                answer: 2
+                // Corrected: see the English version of this question.
+                answer: 0
             },
             {
                 q: 'La ley de Illinois exige que los niños menores de 8 años deben asegurarse con un sistema de fijación (restraining system) o con un cinturón de seguridad al viajar en un vehículo motorizado:',
@@ -1734,6 +1752,179 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
     });
 
+    // =============================================
+    // PRACTICE TEST 4 — 20 written questions
+    // Transcribed verbatim from the scanned "Written Basic" sheet (2 pages),
+    // answers exactly as circled on the paper.
+    //
+    // This is the newest of the sheets: it already carries age 8, the printed
+    // 3-month school-bus suspension and the under-17 curfew, and it covers
+    // topics the older sheets predate — the texting ban, wireless phones in
+    // school and work zones, and the three-foot bicycle passing law.
+    //
+    // The scan clips the right margin on five lines; the missing fragments were
+    // reconstructed from context and confirmed (Q1 "it is", Q4 "road", Q7
+    // "seat", Q12 "If these", Q13 "in a").
+    //
+    // TO ADD SPANISH: fill questions4.es with a parallel array. Until it has
+    // entries, Spanish falls back to English (see getBank).
+    // =============================================
+    const questions4 = {
+        en: [
+            {
+                q: 'If a pedestrian is crossing in the middle of the street, not at a crosswalk (jaywalking) even if it is illegal, you:',
+                options: [
+                    'must stop for them',
+                    'do not have to stop for them',
+                    'should honk your horn at them'
+                ],
+                answer: 0
+            },
+            {
+                q: 'What should a driver do when approaching a traffic control signal that is not in operation?',
+                options: [
+                    'Come to a full stop and yield the right-of-way before entering the intersection',
+                    'If the intersection is clear, the driver does not need to stop',
+                    'Drive quickly through the intersection to get out of the way of other vehicles'
+                ],
+                answer: 0
+            },
+            {
+                q: 'A yellow-dashed line on the roadway means:',
+                options: [
+                    'passing is prohibited on both sides',
+                    'passing is permitted on both sides',
+                    'passing is permitted on your side'
+                ],
+                answer: 1
+            },
+            {
+                q: 'When passing a bicyclist or pedestrian who is riding or walking on the road or shoulder of the road, you must keep a minimum of three feet between your vehicle and the bicyclist or pedestrian.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When are you permitted to open car doors on the side on which traffic is moving?',
+                options: [
+                    'It is legal only in rural areas',
+                    'It is legal only if it can be done without interfering with the movement of other traffic',
+                    'It is legal at all times'
+                ],
+                answer: 1
+            },
+            {
+                q: 'When driving on a slippery road and the rear end of your vehicle starts to skid, you should:',
+                options: [
+                    'turn the front wheels in the direction of the skid',
+                    'hold the wheel firmly and steer straight ahead, braking gradually',
+                    'apply the brakes quickly'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Drivers are NOT permitted to wear headsets or have a television receiver visible from the driver\'s seat.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When turning left and there is a bicyclist entering the intersection from the opposite direction, you should wait for the bicyclist to pass before making the turn.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'When must a driver slow down for a school zone?',
+                options: [
+                    'On school days between 7 a.m. and 4 p.m. when children are present and signs are posted',
+                    'On weekends',
+                    'Only during recess'
+                ],
+                answer: 0
+            },
+            {
+                q: 'It is unlawful for any person to leave the roadway and travel across private property to avoid an official traffic control device.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'At a 4-way stop:',
+                options: [
+                    'the driver reaching the intersection first should be given the right-of-way',
+                    'the driver to the right should be given the right-of-way',
+                    'the driver to the left should be given the right-of-way'
+                ],
+                answer: 0
+            },
+            {
+                q: 'If you are under 17 and you drive after curfew hours, you must have a parent, legal guardian or someone 21 years of age or older with you. Your parents or legal guardian must approve of the person. If these conditions are not met, your license or permit may not be valid during those hours.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'Any person, regardless of age, is prohibited from using a wireless telephone at any time while driving in a school speed zone, or a highway construction or maintenance speed zone.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'If you are convicted of passing a school bus that is receiving or discharging passengers, you may lose your driver\'s license for at least 3 months.',
+                options: ['True', 'False'],
+                answer: 0
+            },
+            {
+                q: 'A driver may type, send, or read a text message while operating a motor vehicle.',
+                options: ['True', 'False'],
+                answer: 1
+            },
+            {
+                q: 'When a two-lane pavement is marked with a single, solid yellow line on your side of the center line:',
+                options: [
+                    'you must slow down and proceed with caution',
+                    'construction work is going on ahead, slow down',
+                    'you must not cross the yellow line to pass another vehicle'
+                ],
+                answer: 2
+            },
+            {
+                q: 'When parking your vehicle facing uphill with a curb:',
+                options: [
+                    'your wheels should be turned toward the curb',
+                    'your wheels should be turned away from the curb',
+                    'your wheels should face straight ahead'
+                ],
+                answer: 1
+            },
+            {
+                // Sheet reads "stopping to quickly"; corrected to "too" as a plain typo.
+                q: 'Most rear end collisions are caused by:',
+                options: [
+                    'the vehicle in front stopping too quickly',
+                    'the vehicle in back following too closely',
+                    'dangerous road conditions'
+                ],
+                answer: 1
+            },
+            {
+                q: 'A driver moving out of an alley, private road, or driveway within an urban area must:',
+                options: [
+                    'stop only if there are vehicles coming down the street',
+                    'stop before reaching the sidewalk and yield to pedestrians and vehicles before proceeding',
+                    'sound his/her horn and exit quickly'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Illinois law requires children under age 8 to be secured by a restraining system or seat belt when traveling in a motor vehicle:',
+                options: [
+                    'anywhere in the vehicle',
+                    'in the front seat only',
+                    'in the back seat only',
+                    'never, this is not a law'
+                ],
+                answer: 0
+            }
+        ],
+        es: []
+    };
+
     // 'E' supports PT2's two 5-option questions (Q11, which keeps the sheet's
     // "None of the above", and Q33). PT1 is unaffected — it has none.
     const LETTERS = ['A', 'B', 'C', 'D', 'E'];
@@ -1767,8 +1958,8 @@ document.addEventListener('DOMContentLoaded', () => {
         screens[name].hidden = false;
     }
 
-    // 1 = PT (written), 2 = PT2 (written), 3 = PTS (signs)
-    const TESTS = { 1: questions, 2: questions2, 3: questions3 };
+    // 1 = PT (written), 2 = PT2 (written), 3 = PTS (signs), 4 = PT4 (written)
+    const TESTS = { 1: questions, 2: questions2, 3: questions3, 4: questions4 };
 
     // Returns the question array for the active test + language. All three tests
     // have both languages; the fallback only guards against a bank being emptied
@@ -1808,6 +1999,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pts-link').addEventListener('click', e => {
         e.preventDefault();
         openOverlay(3);
+    });
+
+    document.getElementById('pt4-link').addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay(4);
     });
 
     // Close buttons
