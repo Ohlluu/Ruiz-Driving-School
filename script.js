@@ -1281,7 +1281,334 @@ document.addEventListener('DOMContentLoaded', () => {
                 answer: 1
             }
         ],
-        es: []
+        // ---- Versión B / Test #2, Sección I, preguntas 1-40 ----
+        // Transcribed verbatim from the scanned Spanish sheet, answers exactly
+        // as marked. The Spanish sheet is a later revision than the English one
+        // and its order differs, so this array is NOT a positional mirror of
+        // questions2.en — each language is internally consistent on its own.
+        es: [
+            {
+                q: 'Al efectuar un giro a la izquierda o a la derecha en un distrito comercial o residencial, se debe efectuar una señal continua de viraje:',
+                options: [
+                    'a una distancia no inferior a 100 pies antes de virar',
+                    'por lo menos a 50 pies de una intersección',
+                    'sólo cuando otros vehículos se están acercando a usted'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Los faros delanteros son necesarios:',
+                options: [
+                    'desde el atardecer hasta el amanecer',
+                    'durante períodos de escasa visibilidad',
+                    'cuando las condiciones climáticas requieren el uso del limpiaparabrisas',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'A usted se le suspenderá su licencia si después de haber sido detenido por CONDUCIR BAJO LA INFLUENCIA del alcohol y/o drogas (DUI):',
+                options: [
+                    'a usted se le somete un examen para sustancias químicas (aliento, sangre u orina) y registra una cantidad de alcohol igual o superior al nivel de intoxicación permitido por la ley (.08%)',
+                    'usted se niega a someterse a un examen para sustancias químicas (aliento, sangre u orín)',
+                    'a usted se le somete un examen para sustancias químicas y registra algún valor (traza) de alguna substancia controlada o cannabis (marihuana)',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Es legal pasar por la orilla de la carretera.',
+                options: ['Verdadero', 'Falso'],
+                answer: 1
+            },
+            {
+                q: 'La mayoría de los choques por la parte trasera del vehículo se deben a:',
+                options: [
+                    'que el vehículo de adelante frena demasiado rápido',
+                    'que el vehículo de atrás sigue muy de cerca',
+                    'condiciones peligrosas del camino'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Si usted es condenado por pasar a un bus escolar mientras está subiendo o bajando pasajeros, usted puede perder su licencia de conducir por lo menos 3 meses.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Al conducir en una vía resbaladiza y las ruedas traseras de su vehículo comienzan a patinar, usted debe:',
+                options: [
+                    'girar las ruedas delanteras en la dirección del deslizamiento',
+                    'sujetar firmemente el volante (manubrio) y conducir hacia adelante, frenando gradualmente',
+                    'aplicar los frenos rápidamente'
+                ],
+                answer: 0
+            },
+            {
+                q: 'La superficie de un puente puede ser peligrosa en el invierno debido a que:',
+                options: [
+                    'en los puentes puede haber hielo, aún si otros pavimentos están despejados',
+                    'la superficie del puente está más caliente',
+                    'ninguna de las anteriores'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Si su vehículo comienza a deslizarse sobre el agua (hidroplanear), usted debe:',
+                options: [
+                    'girar suavemente el volante (manubrio) a la derecha y frenar suavemente',
+                    'apagar el motor y dirigirse a una parada',
+                    'retirar el pie del acelerador y permitir que el vehículo reduzca la velocidad'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Un conductor que sale de un callejón (pasadizo) de una vía privada o entrada particular dentro de un área urbana, debe:',
+                options: [
+                    'detenerse sólo si se aproximan vehículos por la calle',
+                    'pararse antes de llegar a una vereda y ceder el paso a los peatones y vehículos antes de continuar',
+                    'hacer sonar la bocina y salir rápidamente'
+                ],
+                answer: 1
+            },
+            {
+                q: 'El conductor y los pasajeros del asiento delantero (mayores de 8 años) deben usar el cinturón de seguridad al viajar en un vehículo motorizado por las vías de Illinois.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Las motocicletas están habilitadas para utilizar toda la amplitud de una pista de tránsito, al igual que los vehículos. Por lo tanto, cuando usted conduce un vehículo y desea pasar a una motocicleta, usted:',
+                options: [
+                    'deber pasar cuidadosamente a la motocicleta, utilizando la misma pista en que ésta circula',
+                    'debe seguir a la motocicleta sin pasarla',
+                    'no debe pasar a la motocicleta por la misma pista en que ésta circula, sino que debe cambiarse de pista y pasar en la misma forma en que lo haría con otro vehículo'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Muchos accidentes en las intersecciones suceden porque los conductores NO reducen la velocidad ni miran cuidadosamente hacia la izquierda y hacia la derecha antes de ingresar a una intersección.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Usted está esperando en una intersección y el semáforo, cambia a verde. Usted puede continuar:',
+                options: [
+                    'inmediatamente',
+                    'cuando usted crea que es seguro hacerlo',
+                    'después de ceder el derecho de vía a las personas o los vehículos que se encuentren en la intersección'
+                ],
+                answer: 2
+            },
+            {
+                q: 'La ley exige que usted le ceda el derecho de vía a cualquier vehículo autorizado que participe en la construcción o mantenimiento de una carretera, que tiene encendidas sus luces color ámbar (amarillo) oscilantes, rotatorias o centelleantes.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: '¿Cuál de las siguientes es el factor principal en accidentes fatales de vehículos motorizados?',
+                options: [
+                    'el alcohol',
+                    'malas condiciones del camino',
+                    'malas condiciones climáticas',
+                    'problemas mecánicos'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Si usted tiene menos de 17 años y conduce después de horas de restricción (curfew) debe estar acompañado por uno de sus padres, custodio legal, u otra persona de 21 años o más. Sus padres o el custodio legal deben aprobar a dicha persona. Si no se cumplen estas condiciones, su licencia o permiso para conducir no será válido durante esas horas.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Cuando es necesario usar las luces delanteras, las luces altas (bright lights) deben bajarse por lo menos 500 pies antes de encontrarse con otro vehículo, y 300 pies antes de pasarlo.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Cuando usted está conduciendo y se revienta una de las llantas, usted debe:',
+                options: [
+                    'aplicar rápidamente los frenos para reducir la velocidad',
+                    'sujetar firmemente el volante, sacar el pie del acelerador, y permitir que el vehículo reduzca la velocidad antes de conducir hacia la orilla',
+                    'conducir rápidamente hacia la orilla derecha'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Con muy pocas excepciones, una persona no puede conducir un vehículo motorizado (aún si es prestado o rentado por un corto tiempo) a menos que posea una licencia de conducir válida, adecuadamente clasificada para esa clase y tipo de vehículo.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'En el estado de Illinois usted perderá su licencia de conducir, si es condenado por:',
+                options: [
+                    'abandonar el lugar de un accidente en que se ha visto involucrado como conductor, si el accidente produce la muerte o daños personales',
+                    'hacer carrera de carro en la vía pública (street racing)',
+                    'conducir o tener el control físico de un vehículo estando bajo la influencia del alcohol u otras drogas (incluyendo drogas prescritas que pueden disminuir su capacidad para conducir) y/o combinaciones de ellas',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Cuando una luz de tráfico muestra tanto la luz roja como una flecha verde en la dirección en que usted quiere doblar, usted:',
+                options: [
+                    'debe detenerse y permanecer detenido hasta que la luz roja haya cambiado',
+                    'tiene el derecho de vía antes que los peatones al doblar en la dirección de la flecha',
+                    'puede avanzar en la dirección de la flecha con precaución'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Un bus escolar se ha detenido en una carretera de dos carriles y tiene encendidas sus luces rojas de advertencia y su brazo de detención extendido:',
+                options: [
+                    'usted debe detenerse antes de alcanzar o pasar a un bus que esté levantando o bajando pasajeros en una carretera de dos carriles',
+                    'usted no siempre debe detenerse al alcanzar a un bus escolar detenido en una carretera de cuatro o más carriles, si al menos 2 carriles de circulación caminan en sentido opuesto',
+                    'usted no debe detenerse si está conduciendo en sentido opuesto al bus en una carretera de cuatro carriles, pero debe conducir con precaución',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Cuando usted esta ante a una señal de PARE o ALTO, debe detener el vehículo:',
+                options: [
+                    'lo más cerca posible de la señal',
+                    'en la línea marcada antes de entrar en el cruce peatonal, o antes de entrar a una intersección si no hay un cruce peatonal',
+                    'en un punto cerca de la intersección, siempre y cuando se pare por completo'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Al estar permitido doblar con luz roja, la forma correcta de hacerlo es:',
+                options: [
+                    'doblar rápidamente para salir de la vía de otros vehículos',
+                    'detenerse, ceder el derecho de vía a cualquier persona o vehículo que se encuentre dentro de la intersección, luego doblar cuidadosamente',
+                    'detenerse, tocar la bocina para advertir a los otros vehículos, y luego doblar'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Para poder recuperar todos sus derechos para conducir después de haber perdido su licencia por CONDUCIR BAJO LA INFLUENCIA del alcohol y/o drogas (DUI), una persona debe:',
+                options: [
+                    'someterse a una evaluación profesional del uso de alcohol y/o drogas y asistir a un programa de recuperación o de rehabilitación y tener un seguro personal de alto riesgo por tres años',
+                    'ser aprobado para restablecimiento por el Departamento de Audiencias Administrativas de la Secretaría Del Estado y pagar el honorario de restablecimiento',
+                    'esperar por lo menos un año',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Las motocicletas, a pesar de ser más pequeñas y de menos peso, tienen el mismo derecho a vía que otros vehículos. Se debe tener cuidado especial con las motocicletas cuando se aproximan a una intersección, un puente, o cuando hay malas condiciones climáticas.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Cuando un vehículo autorizado de emergencia que lleva sus luces de advertencia y su sirena funcionando se aproxima a su vehículo, usted debe:',
+                options: [
+                    'aumentar su velocidad',
+                    'continuar a la misma velocidad',
+                    'cambiarse al borde de la pista derecha de la carretera, y si es posible, pararse'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Al estar conduciendo en la carretera y la llanta derecha del vehículo se sale del pavimento usted debe:',
+                options: [
+                    'sujetar con fuerza el volante y retirar el pie del acelerador',
+                    'aplicar inmediatamente los frenos y volver al pavimento rápidamente',
+                    'volver rápidamente al pavimento a la velocidad normal'
+                ],
+                answer: 2
+            },
+            {
+                q: 'La ley de Illinois exige que los niños menores de 8 años deben asegurarse con un sistema de fijación (restraining system) o con un cinturón de seguridad al viajar en un vehículo motorizado:',
+                options: [
+                    'en cualquier lugar del vehículo',
+                    'sólo en el asiento delantero',
+                    'sólo en el asiento trasero',
+                    'nunca, esta no es una ley'
+                ],
+                answer: 0
+            },
+            {
+                q: 'Al estar funcionando las luces de advertencia en un cruce de ferrocarril y el tren ha pasado el cruce, ¿cuándo debe usted avanzar?',
+                options: [
+                    'tan pronto que el tren haya pasado el cruce',
+                    'después de haber verificado que no se aproxima otro tren por otra vía',
+                    'debe seguir al vehículo que va adelante'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Al aproximarse a un cruce de ferrocarril que NO tiene ningún sistema de advertencia (tal como luces advertencia o rojas), usted debe:',
+                options: [
+                    'aumentar la velocidad y cruzar los rieles lo más rápido posible',
+                    'continuar a la velocidad normal',
+                    'mirar, escuchar, disminuir la velocidad por si debe detenerse, y continuar cuando sea seguro hacerlo'
+                ],
+                answer: 2
+            },
+            {
+                q: 'A los conductores no se les permite usar audífonos (headsets), o tener un televisor visible desde el asiento del conductor.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Al pasar a otro vehículo usted no debe volver al carril derecho hasta que pueda ver en el retrovisor.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'La luz roja intermitente en una intersección significa:',
+                options: [
+                    'que usted debe tener precaución al cruzar la intersección',
+                    'exactamente lo mismo que la señal de detención',
+                    'que desde atrás se aproxima un vehículo de emergencia'
+                ],
+                answer: 1
+            },
+            {
+                q: 'Es ilegal para cualquier persona salir de la carretera y pasar por propiedad privada para evitar un dispositivo oficial de control de tránsito.',
+                options: ['Verdadero', 'Falso'],
+                answer: 0
+            },
+            {
+                q: 'Cuando una vía de dos carriles está marcada con una línea amarilla simple en su lado de la línea central:',
+                options: [
+                    'debe disminuir la velocidad y seguir con precaución',
+                    'hay construcción más adelante, debe reducir la velocidad',
+                    'usted no debe cruzar la línea amarilla para adelantar a otro vehículo'
+                ],
+                answer: 2
+            },
+            {
+                q: 'Una persona que SE NIEGA a someterse a uno o más exámenes para productos químicos de sangre, aliento u orín, con el fin de determinar el nivel de alcohol y/o drogas:',
+                options: [
+                    'se le suspenderá la licencia de conducir por 12 meses en una primera infracción',
+                    'se le suspenderá la licencia de conducir por 36 meses por una segunda o más veces que se niega a los exámenes dentro de un período de 5 años',
+                    'esto puede utilizarse como evidencia en su contra en una corte si se le acusa de CONDUCIR BAJO LA INFLUENCIA del alcohol y/o drogas (DUI)',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Los residentes de Illinois deben:',
+                options: [
+                    'asegurar sus vehículos contra responsabilidad civil',
+                    'llevar en el vehículo el comprobante de seguro',
+                    'mostrar su comprobante de seguro al ser detenidos por una infracción de tránsito, durante un chequeo al azar, o si se ven involucrados en un accidente de vehículos',
+                    'todas las anteriores'
+                ],
+                answer: 3
+            },
+            {
+                q: 'Si usted DEBE conducir con neblina, debe encender los faros delanteros bajos y:',
+                options: [
+                    'conducir a una velocidad que le permita parar dentro de su campo de visibilidad',
+                    'hacer cambio de luces rutinariamente',
+                    'mantener el pie en el pedal de freno para que sus luces rojas traseras se vean con mayor facilidad'
+                ],
+                answer: 0
+            }
+        ]
     };
 
     // =============================================
@@ -1292,62 +1619,114 @@ document.addEventListener('DOMContentLoaded', () => {
     // becomes one question offering ALL 17 names, numbered 1-17 rather than
     // lettered, so it mirrors the paper.
     // =============================================
-    const SIGN_NAMES = [
-        'Reduction in Lanes',                        //  1
-        'No U Turn',                                 //  2
-        'No Passing Zone',                           //  3
-        'Merge',                                     //  4
-        'Crossroad',                                 //  5
-        'Yield Right of Way',                        //  6
-        'Stop',                                      //  7
-        'Slow Moving Vehicle',                       //  8
-        'Railroad Warning',                          //  9
-        'Pedestrian Crossing',                       // 10
-        'Winding Road',                              // 11
-        'No Right Turn',                             // 12
-        'Signal Ahead',                              // 13
-        'School Zone & School Crossing',             // 14
-        'Side Road',                                 // 15
-        'Do Not Enter',                              // 16
-        'Road Construction and Maintenance Area'     // 17
-    ];
+    // The two sheets number their 17 names differently AND picture a different
+    // set of 15 signs, so each language gets its own list and its own grid —
+    // they are deliberately not translations of each other.
+    const SIGN_NAMES = {
+        en: [
+            'Reduction in Lanes',                        //  1
+            'No U Turn',                                 //  2
+            'No Passing Zone',                           //  3
+            'Merge',                                     //  4
+            'Crossroad',                                 //  5
+            'Yield Right of Way',                        //  6
+            'Stop',                                      //  7
+            'Slow Moving Vehicle',                       //  8
+            'Railroad Warning',                          //  9
+            'Pedestrian Crossing',                       // 10
+            'Winding Road',                              // 11
+            'No Right Turn',                             // 12
+            'Signal Ahead',                              // 13
+            'School Zone & School Crossing',             // 14
+            'Side Road',                                 // 15
+            'Do Not Enter',                              // 16
+            'Road Construction and Maintenance Area'     // 17
+        ],
+        es: [
+            'Cruce de Peatones',                                    //  1
+            'Disminuir la Velocidad',                               //  2
+            'Cruce de Caminos',                                     //  3
+            'Prohibido Entrar',                                     //  4
+            'Vía con Curvas',                                       //  5
+            'Cruce de Ferrocarril (Advertencia al Nivel de Paso)',  //  6
+            'Reducción de Carriles',                                //  7
+            'Vía Lateral',                                          //  8
+            'Prohibido Pasar',                                      //  9
+            'Ceda el Paso',                                         // 10
+            'Pare o Alto',                                          // 11
+            'Prohibido Doblar a la Derecha',                        // 12
+            'Prohibido la Vuelta en U',                             // 13
+            'Zona y Cruce Escolar',                                 // 14
+            'Área en Construcción y Mantenimiento Vial',            // 15
+            'Señal de Unión',                                       // 16
+            'Hay una Señal Adelante'                                // 17
+        ]
+    };
 
-    // The 15 signs pictured on the sheet, in its grid order (left to right,
-    // top to bottom). `name` is the number from SIGN_NAMES above. Art is reused
-    // from PT1's sign questions where it matches.
+    const SIGN_PROMPT = {
+        en: 'Match this sign to its name:',
+        es: 'Relacione esta señal con su nombre:'
+    };
+
+    // Each sheet's pictured signs, in its own grid order (left to right, top to
+    // bottom). `name` is the number from that language's SIGN_NAMES. Art is
+    // reused from PT1's sign questions where it matches.
     //
-    // Winding road (11) and side road (15) had no art in PT1, so those two files
-    // were added for this section. Any future sign without art can be marked
+    // The English sheet omits Merge and Stop; the Spanish sheet omits Vía con
+    // Curvas (winding road) and Vía Lateral (side road). Those four names still
+    // appear as options in their language, acting as distractors only.
+    //
+    // Winding road and side road had no art in PT1, so those two files were
+    // added for the English section. Any future sign without art can be marked
     // `pendingArt: true` to show a labelled placeholder instead of a broken
     // image until its file lands.
-    // Names 4 (Merge) and 7 (Stop) are in the list but not pictured on the
-    // sheet, so they act as distractors only.
-    const SIGN_ITEMS = [
-        { img: 'pt-images/q25.gif',                    name: 13 },
-        { img: 'pt-images/q26.jpg',                    name: 10 },
-        { img: 'pt-images/q30.jpeg',                   name: 3  },
-        { img: 'pt-images/q31.jpg',                    name: 6  },
-        { img: 'pt-images/q36.jpg',                    name: 1  },
-        { img: 'pt-images/sign11-winding-road.png',    name: 11 },
-        { img: 'pt-images/sign15-side-road.jpg',        name: 15 },
-        { img: 'pt-images/q23.jpg',                    name: 17 },
-        { img: 'pt-images/q33.png',                    name: 9  },
-        { img: 'pt-images/q24.jpg',                    name: 2  },
-        { img: 'pt-images/q35.jpg',                    name: 16 },
-        { img: 'pt-images/q38.png',                    name: 8  },
-        { img: 'pt-images/q34.jpg',                    name: 5  },
-        { img: 'pt-images/q27.png',                    name: 12 },
-        { img: 'pt-images/q32.png',                    name: 14 }
-    ];
+    const SIGN_ITEMS = {
+        en: [
+            { img: 'pt-images/q25.gif',                    name: 13 },
+            { img: 'pt-images/q26.jpg',                    name: 10 },
+            { img: 'pt-images/q30.jpeg',                   name: 3  },
+            { img: 'pt-images/q31.jpg',                    name: 6  },
+            { img: 'pt-images/q36.jpg',                    name: 1  },
+            { img: 'pt-images/sign11-winding-road.png',    name: 11 },
+            { img: 'pt-images/sign15-side-road.jpg',       name: 15 },
+            { img: 'pt-images/q23.jpg',                    name: 17 },
+            { img: 'pt-images/q33.png',                    name: 9  },
+            { img: 'pt-images/q24.jpg',                    name: 2  },
+            { img: 'pt-images/q35.jpg',                    name: 16 },
+            { img: 'pt-images/q38.png',                    name: 8  },
+            { img: 'pt-images/q34.jpg',                    name: 5  },
+            { img: 'pt-images/q27.png',                    name: 12 },
+            { img: 'pt-images/q32.png',                    name: 14 }
+        ],
+        es: [
+            { img: 'pt-images/q37.jpg',                    name: 16 },
+            { img: 'pt-images/q34.jpg',                    name: 3  },
+            { img: 'pt-images/q35.jpg',                    name: 4  },
+            { img: 'pt-images/q25.gif',                    name: 17 },
+            { img: 'pt-images/q28.jpg',                    name: 11 },
+            { img: 'pt-images/q27.png',                    name: 12 },
+            { img: 'pt-images/q33.png',                    name: 6  },
+            { img: 'pt-images/q38.png',                    name: 2  },
+            { img: 'pt-images/q31.jpg',                    name: 10 },
+            { img: 'pt-images/q32.png',                    name: 14 },
+            { img: 'pt-images/q36.jpg',                    name: 7  },
+            { img: 'pt-images/q24.jpg',                    name: 13 },
+            { img: 'pt-images/q26.jpg',                    name: 1  },
+            { img: 'pt-images/q23.jpg',                    name: 15 },
+            { img: 'pt-images/q30.jpeg',                   name: 9  }
+        ]
+    };
 
-    SIGN_ITEMS.forEach(sign => {
-        questions2.en.push({
-            img: sign.img,
-            q: 'Match this sign to its name:',
-            options: SIGN_NAMES,
-            answer: sign.name - 1,
-            numbered: true,  // render options as 1-17, and lay them out in a grid
-            pendingArt: !!sign.pendingArt
+    Object.keys(SIGN_ITEMS).forEach(l => {
+        SIGN_ITEMS[l].forEach(sign => {
+            questions2[l].push({
+                img: sign.img,
+                q: SIGN_PROMPT[l],
+                options: SIGN_NAMES[l],
+                answer: sign.name - 1,
+                numbered: true,  // render options as 1-17, and lay them out in a grid
+                pendingArt: !!sign.pendingArt
+            });
         });
     });
 
@@ -1384,10 +1763,9 @@ document.addEventListener('DOMContentLoaded', () => {
         screens[name].hidden = false;
     }
 
-    // Returns the question array for the active test + language.
-    // PT2 has no Spanish yet, so Spanish falls back to English rather than
-    // handing the quiz an empty array. Remove the fallback once questions2.es
-    // is populated.
+    // Returns the question array for the active test + language. Both tests have
+    // both languages now; the fallback only guards against a bank being emptied
+    // in future, so the quiz never receives a zero-length array.
     function getBank() {
         const bank = currentTest === 2 ? questions2 : questions;
         const set = bank[lang];
