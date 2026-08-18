@@ -1401,6 +1401,8 @@ img { display: block; max-width: 100%; }
    `.footer-bottom a` (0-1-1), which otherwise forces both links yellow. */
 .footer-bottom .pt-footer-link-2 { color: rgba(227, 28, 37, 0.55); }
 .footer-bottom .pt-footer-link-2:hover { color: var(--red); }
+.footer-bottom .pt-footer-link-3 { color: rgba(34, 197, 94, 0.55); }
+.footer-bottom .pt-footer-link-3:hover { color: var(--green); }
 
 @media (min-width: 769px) and (max-width: 1366px) {
     .floating-action-btn { bottom: 80px; }

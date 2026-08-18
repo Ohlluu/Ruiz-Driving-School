@@ -937,20 +937,20 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // =============================================
-    // PRACTICE TEST 2
-    // Transcribed verbatim from the scanned "ENGLISH" sheet (front page),
-    // including answers exactly as marked on the paper.
+    // PRACTICE TEST 2 — the 40 written questions
+    // English transcribed from the scanned "ENGLISH" sheet, Spanish from the
+    // scanned "Versión B / Test #2" sheet, answers exactly as marked on paper.
     //
-    // STAGE 1: front page, questions 1-28, English only.
-    // TO ADD THE BACK PAGE: append objects to questions2.en below. Nothing
-    // else needs to change — question count, progress text and the "To Pass"
-    // figure are all derived from array length.
-    // TO ADD SPANISH: fill questions2.es with a parallel array in the same
-    // order. Until it has entries, Spanish falls back to English (see getBank).
+    // The signs section of the same sheets runs as its own test (PTS) further
+    // down, so this bank is written questions only. Question count, progress
+    // text and the "To Pass" figure all derive from array length, so appending
+    // or removing questions needs no other change.
     //
-    // NOTE: several marked answers reflect pre-1997 Illinois law (.10% BAC,
-    // age-6 belt/restraint rules) and Q6 marks an unsafe recovery technique.
-    // Left as scanned per instruction — flagged for the correction pass.
+    // NOTE: the English sheet is the older revision — several marked answers
+    // reflect pre-1997 Illinois law (.10% BAC, age-6 belt/restraint rules)
+    // where the Spanish sheet gives the corrected values (.08%, age 8), and
+    // both sheets mark an unsafe recovery technique for the wheel-off-pavement
+    // question. Left as scanned per instruction — for the correction pass.
     // =============================================
     const questions2 = {
         en: [
@@ -1612,12 +1612,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // =============================================
-    // PT2 — SIGNS matching section (questions 41-55)
+    // PTS — the signs test (15 questions per language)
     //
-    // The sheet gives students one list of 17 sign names and 15 pictured signs,
+    // Each sheet gives students one list of 17 sign names and 15 pictured signs,
     // and they write the matching number under each sign. Each sign therefore
     // becomes one question offering ALL 17 names, numbered 1-17 rather than
     // lettered, so it mirrors the paper.
+    //
+    // This is the signs section of the same paper sheet as PT2, but it runs as
+    // its own test so PT2 stays the 40 written questions.
     // =============================================
     // The two sheets number their 17 names differently AND picture a different
     // set of 15 signs, so each language gets its own list and its own grid —
@@ -1717,17 +1720,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    // PTS — the signs test. Its own bank, so PT2 stays the 40 written questions
+    // and the signs stand alone as a 15-question test in each language.
+    const questions3 = { en: [], es: [] };
     Object.keys(SIGN_ITEMS).forEach(l => {
-        SIGN_ITEMS[l].forEach(sign => {
-            questions2[l].push({
-                img: sign.img,
-                q: SIGN_PROMPT[l],
-                options: SIGN_NAMES[l],
-                answer: sign.name - 1,
-                numbered: true,  // render options as 1-17, and lay them out in a grid
-                pendingArt: !!sign.pendingArt
-            });
-        });
+        questions3[l] = SIGN_ITEMS[l].map(sign => ({
+            img: sign.img,
+            q: SIGN_PROMPT[l],
+            options: SIGN_NAMES[l],
+            answer: sign.name - 1,
+            numbered: true,  // render options as 1-17, and lay them out in a grid
+            pendingArt: !!sign.pendingArt
+        }));
     });
 
     // 'E' supports PT2's two 5-option questions (Q11, which keeps the sheet's
@@ -1763,11 +1767,14 @@ document.addEventListener('DOMContentLoaded', () => {
         screens[name].hidden = false;
     }
 
-    // Returns the question array for the active test + language. Both tests have
-    // both languages now; the fallback only guards against a bank being emptied
+    // 1 = PT (written), 2 = PT2 (written), 3 = PTS (signs)
+    const TESTS = { 1: questions, 2: questions2, 3: questions3 };
+
+    // Returns the question array for the active test + language. All three tests
+    // have both languages; the fallback only guards against a bank being emptied
     // in future, so the quiz never receives a zero-length array.
     function getBank() {
-        const bank = currentTest === 2 ? questions2 : questions;
+        const bank = TESTS[currentTest] || questions;
         const set = bank[lang];
         return (set && set.length) ? set : bank.en;
     }
@@ -1796,6 +1803,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pt2-link').addEventListener('click', e => {
         e.preventDefault();
         openOverlay(2);
+    });
+
+    document.getElementById('pts-link').addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay(3);
     });
 
     // Close buttons
