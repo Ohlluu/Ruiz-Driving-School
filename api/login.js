@@ -5,9 +5,9 @@
 //
 // A side benefit is that every test opening becomes its own log entry, which
 // gives the dashboard far more to work with than one login per shift.
-const auth = require('../lib/auth');
-const store = require('../lib/store');
-const { TESTS } = require('../lib/questions');
+const auth = require('./_lib/auth');
+const store = require('./_lib/store');
+const { TESTS } = require('./_lib/questions');
 
 // Rate limiting counts FAILURES only. Everyone at the school shares one
 // address, so counting successes would lock out a busy office rather than an

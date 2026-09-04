@@ -78,7 +78,7 @@ function serveStatic(req, res, pathname) {
     const file = path.join(ROOT, rel);
     if (!file.startsWith(ROOT)) { res.statusCode = 403; return res.end('forbidden'); }
     // Never serve the server-side pieces, mirroring what Vercel does.
-    if (/^(api|lib)\//.test(rel) || rel === 'dev-server.js') {
+    if (/^api\//.test(rel) || rel === 'dev-server.js') {
         res.statusCode = 404; return res.end('not found');
     }
     fs.readFile(file, (err, buf) => {
@@ -125,6 +125,9 @@ const server = http.createServer(async (req, res) => {
 
     if (url.pathname.startsWith('/api/')) {
         const name = url.pathname.slice(5).replace(/[^a-z0-9-]/gi, '');
+        // Vercel does not route files under /api whose name starts with an
+        // underscore, so neither do we.
+        if (name.startsWith('_')) { res.statusCode = 404; return res.end('not found'); }
         const mod = path.join(ROOT, 'api', name + '.js');
         if (!fs.existsSync(mod)) { res.statusCode = 404; return res.end('no such endpoint'); }
         adapt(req, res, url);

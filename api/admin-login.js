@@ -1,8 +1,8 @@
 // POST /api/admin-login  { password }
 // Owner-only. Separate credential from the instructor codes, so an instructor
 // code can never reach the dashboard.
-const auth = require('../lib/auth');
-const store = require('../lib/store');
+const auth = require('./_lib/auth');
+const store = require('./_lib/store');
 
 const attempts = new Map();
 const WINDOW_MS = 10 * 60 * 1000;

@@ -1,8 +1,8 @@
 // GET /api/admin-logs?days=30
 // Owner-only. Returns the access log for a window, already summarised per
 // person so the dashboard just renders what it is given.
-const auth = require('../lib/auth');
-const store = require('../lib/store');
+const auth = require('./_lib/auth');
+const store = require('./_lib/store');
 
 module.exports = async (req, res) => {
     if (req.method !== 'GET') {

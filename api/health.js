@@ -3,8 +3,8 @@
 // never the values — no code, password or secret is ever returned. Instructor
 // first names and code lengths are included because they are what make a
 // mangled paste obvious, and neither is a credential on its own.
-const auth = require('../lib/auth');
-const store = require('../lib/store');
+const auth = require('./_lib/auth');
+const store = require('./_lib/store');
 
 module.exports = async (req, res) => {
     const cfg = auth.configReport();
