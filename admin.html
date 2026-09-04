@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Code Activity &middot; Ruiz Driving School</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --yellow: #FFD700; --green: #22c55e; --red: #E31C25;
+            --dark: #111111; --dark-2: #1c1c1c; --white: #ffffff;
+            --radius: 10px; --radius-lg: 18px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--dark); color: var(--white); min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            padding: 2rem 1.25rem;
+        }
+        .wrap { max-width: 900px; margin: 0 auto; }
+        .card {
+            background: var(--dark-2); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg); padding: 2rem;
+        }
+        .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.5rem; }
+        .brand span { color: var(--yellow); }
+        h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; margin: 1.5rem 0 0.35rem; }
+        .sub { color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-bottom: 1.5rem; }
+        input, select, button {
+            font-family: inherit; font-size: 0.9rem;
+        }
+        input, select {
+            width: 100%; padding: 0.85rem 1rem; border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04);
+            color: var(--white);
+        }
+        select { width: auto; padding: 0.5rem 0.75rem; }
+        button {
+            padding: 0.85rem 1.25rem; border-radius: var(--radius); border: none;
+            background: var(--yellow); color: var(--dark); font-weight: 700; cursor: pointer;
+        }
+        button.ghost {
+            background: transparent; color: rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.15); font-weight: 600;
+        }
+        button:disabled { opacity: 0.55; cursor: default; }
+        .row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+        .err { color: #ff8b8b; font-size: 0.82rem; margin-top: 0.6rem; }
+        .note {
+            background: rgba(255,215,0,0.07); border: 1px solid rgba(255,215,0,0.25);
+            border-radius: var(--radius); padding: 0.85rem 1rem; font-size: 0.85rem;
+            color: rgba(255,255,255,0.8); margin-bottom: 1.25rem;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td {
+            text-align: left; padding: 0.75rem 0.6rem; font-size: 0.86rem;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        th {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+            color: rgba(255,255,255,0.4); font-weight: 700;
+        }
+        td.num { font-variant-numeric: tabular-nums; }
+        tr.flagged td { background: rgba(227,28,37,0.07); }
+        .badge {
+            display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px;
+            font-size: 0.7rem; font-weight: 700; margin-left: 0.4rem;
+        }
+        .badge.warn { background: rgba(227,28,37,0.2); color: #ff9b9b; }
+        .places { color: rgba(255,255,255,0.45); font-size: 0.78rem; margin-top: 0.2rem; }
+        .empty { color: rgba(255,255,255,0.45); font-size: 0.88rem; padding: 1.5rem 0; }
+        h2 {
+            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.2px;
+            color: rgba(255,255,255,0.45); margin: 2rem 0 0.25rem;
+        }
+        .foot { color: rgba(255,255,255,0.3); font-size: 0.75rem; margin-top: 2rem; }
+        [hidden] { display: none !important; }
+    </style>
+</head>
+<body>
+<div class="wrap">
+
+    <!-- Sign in -->
+    <div id="screen-login" class="card">
+        <div class="brand">Ruiz <span>Driving School</span></div>
+        <h1>Code Activity</h1>
+        <p class="sub">Owner access only.</p>
+        <input type="password" id="pw" placeholder="Owner password" autocomplete="off" />
+        <p id="login-err" class="err" hidden></p>
+        <div class="row" style="margin-top:1rem">
+            <button id="signin">Sign in</button>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="screen-data" class="card" hidden>
+        <div class="row" style="justify-content:space-between">
+            <div>
+                <div class="brand">Ruiz <span>Driving School</span></div>
+                <h1 style="margin-bottom:0">Code Activity</h1>
+            </div>
+            <div class="row">
+                <select id="days">
+                    <option value="7">Last 7 days</option>
+                    <option value="30" selected>Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                </select>
+                <button class="ghost" id="refresh">Refresh</button>
+            </div>
+        </div>
+
+        <div id="store-note" class="note" hidden></div>
+
+        <h2>Instructors</h2>
+        <div id="people-wrap"></div>
+
+        <h2>Failed attempts</h2>
+        <div id="fail-wrap"></div>
+
+        <p class="foot" id="foot"></p>
+    </div>
+
+</div>
+
+<script>
+(function () {
+    var $ = function (id) { return document.getElementById(id); };
+
+    // Everything is shown in Chicago time regardless of where the dashboard is
+    // opened from, so the times always match the shop clock. Intl handles
+    // daylight saving, so no manual offset is needed.
+    var CT = 'America/Chicago';
+
+    function ctTime(ts) {
+        // "3:05pm"
+        return new Intl.DateTimeFormat('en-US', {
+            timeZone: CT, hour: 'numeric', minute: '2-digit', hour12: true
+        }).format(new Date(ts)).replace(/\s?([AP])M/, function (_, p) {
+            return p.toLowerCase() + 'm';
+        });
+    }
+
+    function ctDay(ts) {
+        return new Intl.DateTimeFormat('en-US', {
+            timeZone: CT, month: 'short', day: 'numeric'
+        }).format(new Date(ts));
+    }
+
+    // Today's logins show the time alone; older ones carry the date too.
+    function ctStamp(ts) {
+        if (!ts) return '—';
+        var today = new Intl.DateTimeFormat('en-CA', {
+            timeZone: CT, year: 'numeric', month: '2-digit', day: '2-digit'
+        });
+        var same = today.format(new Date(ts)) === today.format(new Date());
+        return same ? ctTime(ts) : ctDay(ts) + ' ' + ctTime(ts);
+    }
+
+    function fmtWhen(ts) {
+        return ctStamp(ts);
+    }
+
+    function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    function renderPeople(people) {
+        if (!people.length) {
+            $('people-wrap').innerHTML = '<p class="empty">No logins recorded in this period.</p>';
+            return;
+        }
+        var rows = people.map(function (p) {
+            // `flagged` is decided server side, on distinct towns rather than
+            // distinct IPs, so a home connection that rotates its address does
+            // not look like a shared code.
+            var times = (p.times || []);
+            var earlier = times.slice(1, 6).map(ctStamp).join(' · ');
+            return '<tr class="' + (p.flagged ? 'flagged' : '') + '">' +
+                '<td>' + esc(p.who) + (p.flagged ? '<span class="badge warn">check</span>' : '') + '</td>' +
+                '<td class="num">' + p.logins + '</td>' +
+                '<td class="num" style="white-space:nowrap">' +
+                    (times.length ? ctStamp(times[0]) : '—') +
+                    (earlier ? '<div class="places">' + earlier +
+                        (times.length > 6 ? ' +' + (p.logins - 6) + ' more' : '') + '</div>' : '') +
+                '</td>' +
+                '<td class="num">' + p.ipCount + '</td>' +
+                '<td>' + esc(p.lastPlace || '—') + '<div class="places">' +
+                    esc(p.locations.slice(0, 4).join(' · ')) +
+                    (p.locations.length > 4 ? ' +' + (p.locations.length - 4) + ' more' : '') +
+                '</div></td>' +
+            '</tr>';
+        }).join('');
+        $('people-wrap').innerHTML =
+            '<table><thead><tr><th>Instructor</th><th>Logins</th><th>Logged in (Chicago)</th>' +
+            '<th>Networks</th><th>Seen from</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+            '<p class="places" style="margin-top:0.75rem">' +
+            'Times are Chicago time. The large time is the most recent login, with earlier ' +
+            'ones listed underneath. The <strong>check</strong> flag still appears when one code ' +
+            'has been used from three or more different towns &mdash; those towns are listed under ' +
+            '&ldquo;Seen from&rdquo;. &ldquo;Networks&rdquo; counts distinct connections; a high ' +
+            'number in a single town is usually just a home connection changing address.</p>';
+    }
+
+    function renderFailures(fails) {
+        if (!fails.length) {
+            $('fail-wrap').innerHTML = '<p class="empty">No failed attempts.</p>';
+            return;
+        }
+        var rows = fails.map(function (f) {
+            var place = [f.city, f.region].filter(Boolean).join(' ') || f.country || 'unknown';
+            return '<tr><td>' + esc(f.kind === 'dashboard' ? 'dashboard' : 'wrong code') + '</td>' +
+                '<td>' + esc(place) + '</td><td>' + esc(f.ip || '—') + '</td>' +
+                '<td>' + fmtWhen(f.ts) + '</td></tr>';
+        }).join('');
+        $('fail-wrap').innerHTML =
+            '<table><thead><tr><th>Type</th><th>Place</th><th>IP</th><th>When</th></tr></thead><tbody>' +
+            rows + '</tbody></table>';
+    }
+
+    async function load() {
+        $('refresh').disabled = true;
+        try {
+            var res = await fetch('/api/admin-logs?days=' + $('days').value, { credentials: 'same-origin' });
+            if (res.status === 401) { show('login'); $('login-err').textContent = 'Session expired. Sign in again.'; $('login-err').hidden = false; return; }
+            if (!res.ok) throw new Error('load failed');
+            var data = await res.json();
+
+            if (data.configured === false) {
+                $('store-note').textContent = data.note || 'Log store not configured.';
+                $('store-note').hidden = false;
+            } else {
+                $('store-note').hidden = true;
+            }
+            renderPeople(data.people || []);
+            renderFailures(data.failures || []);
+            $('foot').textContent = 'Logins are recorded with an approximate location, kept for ' +
+                (data.retentionDays || 90) + ' days, then deleted automatically. ' +
+                'Location comes from the network address and is often only accurate to the nearest city.';
+        } catch (e) {
+            $('people-wrap').innerHTML = '<p class="empty">Could not load activity. Try refreshing.</p>';
+        } finally {
+            $('refresh').disabled = false;
+        }
+    }
+
+    function show(which) {
+        $('screen-login').hidden = which !== 'login';
+        $('screen-data').hidden = which !== 'data';
+    }
+
+    async function signin() {
+        var btn = $('signin');
+        btn.disabled = true;
+        $('login-err').hidden = true;
+        try {
+            var res = await fetch('/api/admin-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'same-origin',
+                body: JSON.stringify({ password: $('pw').value })
+            });
+            if (res.status === 429) throw new Error('Too many attempts. Wait a few minutes.');
+            if (res.status === 500) throw new Error('Server not configured yet.');
+            if (!res.ok) throw new Error('Incorrect password.');
+            $('pw').value = '';
+            show('data');
+            await load();
+        } catch (e) {
+            $('login-err').textContent = e.message || 'Sign in failed.';
+            $('login-err').hidden = false;
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    $('signin').addEventListener('click', signin);
+    $('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') signin(); });
+    $('refresh').addEventListener('click', load);
+    $('days').addEventListener('change', load);
+
+    // Already signed in from earlier in the day? Skip the password screen.
+    fetch('/api/admin-logs?days=30', { credentials: 'same-origin' }).then(function (r) {
+        if (r.ok) { show('data'); load(); }
+    }).catch(function () {});
+})();
+</script>
+</body>
+</html>
