@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (res.status === 429) {
                 setCodeError('Too many attempts. Wait a few minutes and try again.');
             } else if (res.status === 500) {
-                setCodeError('Server not configured yet. Contact the office.');
+                setCodeError('Login is not set up yet on this site. Contact the office.');
             } else if (!res.ok) {
                 setCodeError('That code was not recognised.');
                 input.select();
