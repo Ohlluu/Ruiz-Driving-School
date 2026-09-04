@@ -37,10 +37,32 @@ module.exports = async (req, res) => {
         problems.push('log store not configured — logins will work, but nothing is recorded');
     }
 
+    // Names only, never values. If a key was typed with a trailing space or a
+    // slightly different spelling, this is what makes it visible — the value
+    // would be present but under a name nothing reads.
+    const NOISE = /^(VERCEL|AWS|NEXT|NODE|npm|PATH|HOME|LANG|LD_|TZ|_|PWD|SHLVL|TERM|EDITOR|HOSTNAME|PORT)/i;
+    const visibleNames = Object.keys(process.env).filter(k => !NOISE.test(k)).sort();
+
+    const expected = ['INSTRUCTOR_CODES', 'OWNER_PASSWORD', 'SESSION_SECRET'];
+    const normalise = s => s.replace(/[^a-z]/gi, '').toUpperCase();
+    const nearMisses = [];
+    expected.forEach(want => {
+        Object.keys(process.env).forEach(have => {
+            if (have === want) return;
+            if (normalise(have) === normalise(want)) {
+                nearMisses.push({ expected: want, found: JSON.stringify(have) });
+            }
+        });
+    });
+
     res.setHeader('Cache-Control', 'no-store');
     return res.status(200).json({
         ready,
         problems,
+        expectedNamesPresent: expected.filter(k => k in process.env),
+        expectedNamesMissing: expected.filter(k => !(k in process.env)),
+        nearMisses,
+        visibleNames,
         config: cfg,
         logStore,
         // Confirms the deployment is reading geo headers, which the dashboard
