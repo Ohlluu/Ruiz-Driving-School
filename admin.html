@@ -128,13 +128,38 @@
 (function () {
     var $ = function (id) { return document.getElementById(id); };
 
-    function fmtWhen(ts) {
+    // Everything is shown in Chicago time regardless of where the dashboard is
+    // opened from, so the times always match the shop clock. Intl handles
+    // daylight saving, so no manual offset is needed.
+    var CT = 'America/Chicago';
+
+    function ctTime(ts) {
+        // "3:05pm"
+        return new Intl.DateTimeFormat('en-US', {
+            timeZone: CT, hour: 'numeric', minute: '2-digit', hour12: true
+        }).format(new Date(ts)).replace(/\s?([AP])M/, function (_, p) {
+            return p.toLowerCase() + 'm';
+        });
+    }
+
+    function ctDay(ts) {
+        return new Intl.DateTimeFormat('en-US', {
+            timeZone: CT, month: 'short', day: 'numeric'
+        }).format(new Date(ts));
+    }
+
+    // Today's logins show the time alone; older ones carry the date too.
+    function ctStamp(ts) {
         if (!ts) return '—';
-        var d = new Date(ts), now = Date.now(), diff = now - ts;
-        if (diff < 3600e3) return Math.max(1, Math.round(diff / 60e3)) + 'm ago';
-        if (diff < 86400e3) return Math.round(diff / 3600e3) + 'h ago';
-        if (diff < 7 * 86400e3) return Math.round(diff / 86400e3) + 'd ago';
-        return d.toLocaleDateString();
+        var today = new Intl.DateTimeFormat('en-CA', {
+            timeZone: CT, year: 'numeric', month: '2-digit', day: '2-digit'
+        });
+        var same = today.format(new Date(ts)) === today.format(new Date());
+        return same ? ctTime(ts) : ctDay(ts) + ' ' + ctTime(ts);
+    }
+
+    function fmtWhen(ts) {
+        return ctStamp(ts);
     }
 
     function esc(s) {
@@ -152,25 +177,32 @@
             // `flagged` is decided server side, on distinct towns rather than
             // distinct IPs, so a home connection that rotates its address does
             // not look like a shared code.
+            var times = (p.times || []);
+            var earlier = times.slice(1, 6).map(ctStamp).join(' · ');
             return '<tr class="' + (p.flagged ? 'flagged' : '') + '">' +
                 '<td>' + esc(p.who) + (p.flagged ? '<span class="badge warn">check</span>' : '') + '</td>' +
                 '<td class="num">' + p.logins + '</td>' +
-                '<td class="num">' + p.townCount + '</td>' +
+                '<td class="num" style="white-space:nowrap">' +
+                    (times.length ? ctStamp(times[0]) : '—') +
+                    (earlier ? '<div class="places">' + earlier +
+                        (times.length > 6 ? ' +' + (p.logins - 6) + ' more' : '') + '</div>' : '') +
+                '</td>' +
                 '<td class="num">' + p.ipCount + '</td>' +
                 '<td>' + esc(p.lastPlace || '—') + '<div class="places">' +
                     esc(p.locations.slice(0, 4).join(' · ')) +
                     (p.locations.length > 4 ? ' +' + (p.locations.length - 4) + ' more' : '') +
                 '</div></td>' +
-                '<td>' + fmtWhen(p.lastSeen) + '</td>' +
             '</tr>';
         }).join('');
         $('people-wrap').innerHTML =
-            '<table><thead><tr><th>Instructor</th><th>Logins</th><th>Towns</th><th>Networks</th>' +
-            '<th>Seen from</th><th>Last seen</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+            '<table><thead><tr><th>Instructor</th><th>Logins</th><th>Logged in (Chicago)</th>' +
+            '<th>Networks</th><th>Seen from</th></tr></thead><tbody>' + rows + '</tbody></table>' +
             '<p class="places" style="margin-top:0.75rem">' +
-            '&ldquo;Towns&rdquo; is how many different places a code was used from, and drives the ' +
-            '<strong>check</strong> flag. &ldquo;Networks&rdquo; counts distinct connections &mdash; ' +
-            'a high number in a single town is usually just a home connection changing address.</p>';
+            'Times are Chicago time. The large time is the most recent login, with earlier ' +
+            'ones listed underneath. The <strong>check</strong> flag still appears when one code ' +
+            'has been used from three or more different towns &mdash; those towns are listed under ' +
+            '&ldquo;Seen from&rdquo;. &ldquo;Networks&rdquo; counts distinct connections; a high ' +
+            'number in a single town is usually just a home connection changing address.</p>';
     }
 
     function renderFailures(fails) {

@@ -57,11 +57,12 @@ module.exports = async (req, res) => {
         if (!byPerson.has(key)) {
             byPerson.set(key, {
                 who: key, logins: 0, ips: new Set(), towns: new Set(),
-                lastSeen: 0, lastPlace: ''
+                times: [], lastSeen: 0, lastPlace: ''
             });
         }
         const p = byPerson.get(key);
         p.logins++;
+        p.times.push(r.ts);
         if (r.ip) p.ips.add(r.ip);
         // Only count a town when we actually know it — a request that arrives
         // without geo headers must not register as another distinct place.
@@ -86,10 +87,14 @@ module.exports = async (req, res) => {
         townCount: p.towns.size,
         locations: [...p.towns],
         flagged: p.towns.size >= TOWN_FLAG_THRESHOLD,
+        // Most recent logins first. The dashboard renders these as Chicago
+        // clock times; timestamps stay as epoch ms so the browser can format
+        // them in the right zone and handle daylight saving itself.
+        times: p.times.sort((a, b) => b - a).slice(0, 8),
         lastSeen: p.lastSeen,
         lastPlace: p.lastPlace
     })).sort((a, b) =>
-        (b.flagged - a.flagged) || (b.townCount - a.townCount) || (b.logins - a.logins)
+        (b.flagged - a.flagged) || (b.lastSeen - a.lastSeen) || (b.logins - a.logins)
     );
 
     res.setHeader('Cache-Control', 'no-store, private');
