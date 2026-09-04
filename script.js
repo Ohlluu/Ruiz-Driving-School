@@ -334,11 +334,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (res.status === 429) {
                 setCodeError('Too many attempts. Wait a few minutes and try again.');
+            } else if (res.status === 404) {
+                // The endpoint itself is missing — a deployment problem, not a
+                // wrong code. Worth saying so plainly rather than blaming the
+                // code that was typed.
+                setCodeError('Login service not found on this deployment (404). The site needs redeploying.');
             } else if (res.status === 500) {
                 setCodeError('Login is not set up yet on this site. Contact the office.');
-            } else if (!res.ok) {
+            } else if (res.status === 401) {
                 setCodeError('That code was not recognised.');
                 input.select();
+            } else if (!res.ok) {
+                setCodeError('Login failed (error ' + res.status + '). Contact the office.');
             } else if (await loadQuestions()) {
                 showScreen('language');
             } else {
