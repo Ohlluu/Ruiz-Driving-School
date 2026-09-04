@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Local environment — instructor codes and secrets must never be committed.
+# These live in Vercel's environment variables in production.
+.env
+.env.local
+.env*.local
+
+# Vercel
+.vercel
+
+# Local test scratch files
+_v*.html
+_adm.html
+_s*.html
+_foot*.html

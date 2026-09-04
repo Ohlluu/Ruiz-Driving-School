@@ -612,10 +612,11 @@
                     <span class="logo-sub">Driving School</span>
                 </div>
                 <h2 class="pt-heading">Practice Test</h2>
-                <p class="pt-sub">Enter the instructor password to access the practice test.</p>
+                <p class="pt-sub">Enter your personal instructor code. Codes are issued individually &mdash; please do not share yours.</p>
                 <div class="pt-input-group">
-                    <input type="password" id="pt-password-input" placeholder="Password" autocomplete="off" />
-                    <p id="pt-password-error" class="pt-error" hidden>Incorrect password. Please try again.</p>
+                    <input type="password" id="pt-password-input" placeholder="Instructor code" autocomplete="off"
+                           autocapitalize="characters" spellcheck="false" maxlength="16" />
+                    <p id="pt-password-error" class="pt-error" hidden>That code was not recognised.</p>
                 </div>
                 <button id="pt-password-submit" class="pt-btn pt-btn-primary">Continue</button>
             </div>
