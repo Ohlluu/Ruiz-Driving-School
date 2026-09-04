@@ -173,9 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!overlay) return;
 
     // Question banks are no longer in this file. They live server side in
-    // lib/questions.js and arrive from /api/questions once a valid instructor
-    // code has been accepted, so the answer keys are never delivered to a
-    // browser that has not logged in.
+    // lib/questions.js and arrive in the /api/login response once a valid
+    // instructor code has been accepted, so the answer keys are never
+    // delivered to a browser that has not logged in. They are held in memory
+    // only for as long as the overlay is open.
     let TESTS = null;
     let sessionWho = null;
 
@@ -213,32 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Returns the question array for the active test + language. TESTS is keyed
-    // 1 = PT, 2 = PT2, 3 = PTS (signs), 4 = PT4, and is filled from
-    // /api/questions after login. The language fallback only guards against a
-    // bank being empty (PT4 has no Spanish yet), so the quiz never receives a
-    // zero-length array.
+    // 1 = PT, 2 = PT2, 3 = PTS (signs), 4 = PT4, and is filled from the login
+    // response. The language fallback only guards against a bank being empty
+    // (PT4 has no Spanish yet), so the quiz never receives a zero-length array.
     function getBank() {
         if (!TESTS) return [];
         const bank = TESTS[currentTest] || TESTS[1];
         const set = bank[lang];
         return (set && set.length) ? set : bank.en;
-    }
-
-    // Fetches the banks for the current session. Returns true once TESTS is
-    // populated, false if the session is missing or expired.
-    async function loadQuestions() {
-        if (TESTS) return true;
-        try {
-            const res = await fetch('/api/questions', { credentials: 'same-origin' });
-            if (!res.ok) return false;
-            const data = await res.json();
-            if (!data || !data.tests) return false;
-            TESTS = data.tests;
-            sessionWho = data.who || null;
-            return true;
-        } catch (e) {
-            return false;
-        }
     }
 
     function setCodeError(msg) {
@@ -247,27 +230,25 @@ document.addEventListener('DOMContentLoaded', () => {
         el.hidden = !msg;
     }
 
-    async function openOverlay(testNum) {
+    // The code is required every time a test is opened. Nothing is remembered
+    // between openings, by design.
+    function openOverlay(testNum) {
         currentTest = testNum;
         overlay.hidden = false;
         document.body.style.overflow = 'hidden';
         document.getElementById('pt-password-input').value = '';
         setCodeError('');
-
-        // An 8-hour session means a second test in the same shift should not ask
-        // for the code again — try the session first and only fall back to the
-        // code screen if it has gone.
         showScreen('password');
-        if (await loadQuestions()) {
-            showScreen('language');
-            return;
-        }
         setTimeout(() => document.getElementById('pt-password-input').focus(), 60);
     }
 
     function closeOverlay() {
         overlay.hidden = true;
         document.body.style.overflow = '';
+        // Drop the questions on the way out, so reopening asks for the code
+        // again rather than reusing what is still in memory.
+        TESTS = null;
+        sessionWho = null;
     }
 
     // Open via PT links — each link picks its test, then password → language → quiz
@@ -346,10 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.select();
             } else if (!res.ok) {
                 setCodeError('Login failed (error ' + res.status + '). Contact the office.');
-            } else if (await loadQuestions()) {
-                showScreen('language');
             } else {
-                setCodeError('Signed in, but the questions could not be loaded. Try again.');
+                // The questions come back with the successful login response.
+                const data = await res.json();
+                if (data && data.tests) {
+                    TESTS = data.tests;
+                    sessionWho = data.name || null;
+                    input.value = '';                 // don't leave the code on screen
+                    showScreen('language');
+                } else {
+                    setCodeError('Code accepted, but the questions did not load. Try again.');
+                }
             }
         } catch (e) {
             setCodeError('No connection. Check the internet and try again.');

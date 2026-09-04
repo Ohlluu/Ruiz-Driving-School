@@ -1,27 +1,38 @@
 // POST /api/login  { code }
-// Validates an instructor code, starts an 8-hour session, and records the
-// attempt (successes and failures alike) in the access log.
+// Validates an instructor code and returns the question banks in the same
+// response. No session and no cookie: a code is typed every time a test is
+// opened, so there is nothing persisted that could be replayed or shared.
+//
+// A side benefit is that every test opening becomes its own log entry, which
+// gives the dashboard far more to work with than one login per shift.
 const auth = require('../lib/auth');
 const store = require('../lib/store');
+const { TESTS } = require('../lib/questions');
 
-// Crude in-memory rate limit. Serverless instances come and go, so this is a
-// speed bump against a burst from one address, not a guarantee. The real
-// protection against guessing is the size of the code space.
-const attempts = new Map();
+// Rate limiting counts FAILURES only. Everyone at the school shares one
+// address, so counting successes would lock out a busy office rather than an
+// attacker. Wrong codes are what needs throttling.
+const failures = new Map();
 const WINDOW_MS = 10 * 60 * 1000;
-const MAX_PER_WINDOW = 12;
+const MAX_FAILURES = 10;
 
-function rateLimited(ip) {
+function recentFailures(ip) {
     const now = Date.now();
-    const seen = (attempts.get(ip) || []).filter(t => now - t < WINDOW_MS);
+    const seen = (failures.get(ip) || []).filter(t => now - t < WINDOW_MS);
+    if (seen.length) failures.set(ip, seen); else failures.delete(ip);
+    return seen.length;
+}
+
+function noteFailure(ip) {
+    const now = Date.now();
+    const seen = (failures.get(ip) || []).filter(t => now - t < WINDOW_MS);
     seen.push(now);
-    attempts.set(ip, seen);
-    if (attempts.size > 500) {                       // keep the map from growing
-        for (const [k, v] of attempts) {
-            if (!v.some(t => now - t < WINDOW_MS)) attempts.delete(k);
+    failures.set(ip, seen);
+    if (failures.size > 500) {
+        for (const [k, v] of failures) {
+            if (!v.some(t => now - t < WINDOW_MS)) failures.delete(k);
         }
     }
-    return seen.length > MAX_PER_WINDOW;
 }
 
 async function readBody(req) {
@@ -30,8 +41,7 @@ async function readBody(req) {
     }
     const chunks = [];
     for await (const c of req) chunks.push(c);
-    const raw = Buffer.concat(chunks).toString() || '{}';
-    return JSON.parse(raw);
+    return JSON.parse(Buffer.concat(chunks).toString() || '{}');
 }
 
 module.exports = async (req, res) => {
@@ -41,10 +51,6 @@ module.exports = async (req, res) => {
     }
 
     const origin = auth.requestOrigin(req);
-
-    if (rateLimited(origin.ip)) {
-        return res.status(429).json({ error: 'too_many_attempts' });
-    }
 
     let code = '';
     try {
@@ -61,7 +67,6 @@ module.exports = async (req, res) => {
         return res.status(500).json({ error: 'server_misconfigured' });
     }
 
-    // Log before responding so a failure is recorded even if the caller aborts.
     await store.logAttempt({
         who: name || 'unknown',
         ok: !!name,
@@ -73,13 +78,21 @@ module.exports = async (req, res) => {
         ua: origin.ua
     });
 
-    if (!name) return res.status(401).json({ error: 'invalid_code' });
-
-    try {
-        res.setHeader('Set-Cookie', auth.cookieHeader(auth.createSession(name, 'instructor')));
-    } catch (e) {
-        console.error('session misconfigured:', e.message);
-        return res.status(500).json({ error: 'server_misconfigured' });
+    // The throttle is checked only once a code has already been rejected, never
+    // before. A correct code always gets through, so one person's run of typos
+    // cannot lock out the rest of the office sharing the same address. Guessing
+    // is still throttled, and it was never viable anyway: seven characters from
+    // a 29-character alphabet is about 17 billion combinations.
+    if (!name) {
+        noteFailure(origin.ip);
+        if (recentFailures(origin.ip) > MAX_FAILURES) {
+            return res.status(429).json({ error: 'too_many_attempts' });
+        }
+        return res.status(401).json({ error: 'invalid_code' });
     }
-    return res.status(200).json({ ok: true, name, hours: auth.SESSION_HOURS });
+
+    // Questions travel with the successful response. Never cached — this is the
+    // answer key, and it should not sit in a proxy or the browser's disk cache.
+    res.setHeader('Cache-Control', 'no-store, private');
+    return res.status(200).json({ ok: true, name, tests: TESTS });
 };
