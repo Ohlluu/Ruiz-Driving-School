@@ -1762,7 +1762,167 @@ const questions4 = {
             answer: 0
         }
     ],
-    es: []
+    // ---- Spanish, same order as the English above ----
+    // Nine of these are lifted verbatim from the scanned "Versión B" sheet,
+    // since that is the wording students already study from: the skid,
+    // headsets, private property, curfew, school bus, yellow line, rear-end,
+    // alley and child restraint questions.
+    //
+    // The other eleven had no Spanish original and were translated to match
+    // the sheet's register and vocabulary (usted, "adelantar", "doblar",
+    // "orilla de la carretera"). A native Spanish-speaking instructor should
+    // read those over before students rely on them.
+    es: [
+        {
+            q: 'Si un peatón está cruzando en medio de la calle, fuera de un cruce peatonal (jaywalking), aunque sea ilegal, usted:',
+            options: [
+                'debe detenerse y cederle el paso',
+                'no tiene que detenerse',
+                'debe tocarle la bocina'
+            ],
+            answer: 0
+        },
+        {
+            q: '¿Qué debe hacer un conductor al aproximarse a un semáforo que no está funcionando?',
+            options: [
+                'Detenerse por completo y ceder el derecho de vía antes de entrar a la intersección',
+                'Si la intersección está despejada, el conductor no necesita detenerse',
+                'Cruzar rápidamente la intersección para no estorbar a los demás vehículos'
+            ],
+            answer: 0
+        },
+        {
+            q: 'Una línea amarilla discontinua en el pavimento significa:',
+            options: [
+                'se prohíbe adelantar en ambos sentidos',
+                'se permite adelantar en ambos sentidos',
+                'se permite adelantar solamente de su lado'
+            ],
+            answer: 1
+        },
+        {
+            q: 'Al adelantar a un ciclista o peatón que va por la carretera o por la orilla de la carretera, usted debe mantener un mínimo de tres pies entre su vehículo y el ciclista o peatón.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: '¿Cuándo se permite abrir las puertas del vehículo del lado por donde circula el tránsito?',
+            options: [
+                'Solamente es legal en zonas rurales',
+                'Solamente es legal si se puede hacer sin interferir con el movimiento del tránsito',
+                'Es legal en todo momento'
+            ],
+            answer: 1
+        },
+        {
+            q: 'Al conducir en una vía resbaladiza y las ruedas traseras de su vehículo comienzan a patinar, usted debe:',
+            options: [
+                'girar las ruedas delanteras en la dirección del deslizamiento',
+                'sujetar firmemente el volante (manubrio) y conducir hacia adelante, frenando gradualmente',
+                'aplicar los frenos rápidamente'
+            ],
+            answer: 0
+        },
+        {
+            q: 'A los conductores no se les permite usar audífonos (headsets), o tener un televisor visible desde el asiento del conductor.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: 'Al doblar a la izquierda, si un ciclista entra a la intersección en sentido contrario, usted debe esperar a que el ciclista pase antes de doblar.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: '¿Cuándo debe un conductor reducir la velocidad en una zona escolar?',
+            options: [
+                'En días de clases entre las 7 a.m. y las 4 p.m., cuando hay niños presentes y hay señales colocadas',
+                'Los fines de semana',
+                'Solamente durante el recreo'
+            ],
+            answer: 0
+        },
+        {
+            q: 'Es ilegal para cualquier persona salir de la carretera y pasar por propiedad privada para evitar un dispositivo oficial de control de tránsito.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: 'En una intersección con señal de ALTO en las cuatro direcciones (4-way stop):',
+            options: [
+                'el conductor que llega primero a la intersección tiene el derecho de vía',
+                'el conductor de la derecha tiene el derecho de vía',
+                'el conductor de la izquierda tiene el derecho de vía'
+            ],
+            answer: 0
+        },
+        {
+            q: 'Si usted tiene menos de 17 años y conduce después de horas de restricción (curfew) debe estar acompañado por uno de sus padres, custodio legal, u otra persona de 21 años o más. Sus padres o el custodio legal deben aprobar a dicha persona. Si no se cumplen estas condiciones, su licencia o permiso para conducir no será válido durante esas horas.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: 'Cualquier persona, sin importar su edad, tiene prohibido usar un teléfono celular en todo momento mientras conduce en una zona escolar de velocidad, o en una zona de construcción o mantenimiento de carreteras.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: 'Si usted es condenado por pasar a un bus escolar mientras está subiendo o bajando pasajeros, usted puede perder su licencia de conducir por lo menos 3 meses.',
+            options: ['Verdadero', 'Falso'],
+            answer: 0
+        },
+        {
+            q: 'Un conductor puede escribir, enviar o leer un mensaje de texto mientras conduce un vehículo motorizado.',
+            options: ['Verdadero', 'Falso'],
+            answer: 1
+        },
+        {
+            q: 'Cuando una vía de dos carriles está marcada con una línea amarilla simple en su lado de la línea central:',
+            options: [
+                'debe disminuir la velocidad y seguir con precaución',
+                'hay construcción más adelante, debe reducir la velocidad',
+                'usted no debe cruzar la línea amarilla para adelantar a otro vehículo'
+            ],
+            answer: 2
+        },
+        {
+            q: 'Al estacionar su vehículo cuesta arriba junto a una acera (banqueta):',
+            options: [
+                'las ruedas deben quedar giradas hacia la acera',
+                'las ruedas deben quedar giradas en dirección contraria a la acera',
+                'las ruedas deben quedar derechas'
+            ],
+            answer: 1
+        },
+        {
+            q: 'La mayoría de los choques por la parte trasera del vehículo se deben a:',
+            options: [
+                'que el vehículo de adelante frena demasiado rápido',
+                'que el vehículo de atrás sigue muy de cerca',
+                'condiciones peligrosas del camino'
+            ],
+            answer: 1
+        },
+        {
+            q: 'Un conductor que sale de un callejón (pasadizo) de una vía privada o entrada particular dentro de un área urbana, debe:',
+            options: [
+                'detenerse sólo si se aproximan vehículos por la calle',
+                'pararse antes de llegar a una vereda y ceder el paso a los peatones y vehículos antes de continuar',
+                'hacer sonar la bocina y salir rápidamente'
+            ],
+            answer: 1
+        },
+        {
+            q: 'La ley de Illinois exige que los niños menores de 8 años deben asegurarse con un sistema de fijación (restraining system) o con un cinturón de seguridad al viajar en un vehículo motorizado:',
+            options: [
+                'en cualquier lugar del vehículo',
+                'sólo en el asiento delantero',
+                'sólo en el asiento trasero',
+                'nunca, esta no es una ley'
+            ],
+            answer: 0
+        }
+    ]
 };
 
 // 1 = PT (written), 2 = PT2 (written), 3 = PTS (signs), 4 = PT4 (written)
