@@ -224,6 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return (set && set.length) ? set : bank.en;
     }
 
+    // Static overlay text carries its Spanish alongside the English in the
+    // markup (data-es). The English is stashed on first use so switching back
+    // after a retake restores it. Anything the quiz rewrites as it runs —
+    // progress text, Next/See Results, the results review — is translated at
+    // the point it is written instead, and carries no data-es.
+    function applyLang() {
+        overlay.querySelectorAll('[data-es]').forEach(el => {
+            if (el.dataset.en === undefined) el.dataset.en = el.textContent;
+            el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
+        });
+    }
+
     function setCodeError(msg) {
         const el = document.getElementById('pt-password-error');
         if (msg) el.textContent = msg;
@@ -378,6 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Pass mark is 80% of however many questions this test has
         document.getElementById('sb-topass').textContent = Math.ceil(total * 0.8);
         document.getElementById('pt-quit-modal').hidden = true;
+        applyLang();
         showScreen('quiz');
         renderQuestion();
     }
@@ -411,18 +424,24 @@ document.addEventListener('DOMContentLoaded', () => {
             imgEl.removeAttribute('src');
             imgEl.alt = '';
             imgEl.hidden = true;
-            phEl.textContent = 'Sign image coming soon';
+            phEl.textContent = lang === 'es'
+                ? 'Imagen de la señal próximamente'
+                : 'Sign image coming soon';
             phEl.hidden = false;
         } else if (q.img) {
             imgEl.onerror = () => {
                 imgEl.onerror = null;
                 imgEl.hidden = true;
-                phEl.textContent = 'Sign image not available yet';
+                phEl.textContent = lang === 'es'
+                    ? 'Imagen de la señal aún no disponible'
+                    : 'Sign image not available yet';
                 phEl.hidden = false;
             };
             phEl.hidden = true;
             imgEl.src = q.img;
-            imgEl.alt = 'Question ' + (qIdx + 1) + ' reference image';
+            imgEl.alt = lang === 'es'
+                ? 'Imagen de referencia de la pregunta ' + (qIdx + 1)
+                : 'Question ' + (qIdx + 1) + ' reference image';
             imgEl.hidden = false;
         } else {
             imgEl.removeAttribute('src');
