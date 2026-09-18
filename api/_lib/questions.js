@@ -177,9 +177,8 @@ const questions = {
                 'Quickly swing back onto the pavement at your normal speed',
                 'Apply the brakes immediately and swing back onto the pavement quickly'
             ],
-            // Corrected: the sheet marked swinging back at normal speed, which
-            // risks an overcorrection rollover. Ease off and slow first.
-            answer: 0
+            // Matches the printed answer sheet students are graded against.
+            answer: 1
         },
         {
             img: 'pt-images/q20.webp',
@@ -562,8 +561,8 @@ questions.es = [
             'Regresar rápidamente al pavimento a tu velocidad normal',
             'Aplicar los frenos de inmediato y regresar rápidamente al pavimento'
         ],
-        // Corrected: see the English version of this question.
-        answer: 0
+        // See the English version of this question.
+        answer: 1
     },
     {
         img: 'pt-images/q20.webp',
@@ -843,9 +842,9 @@ const questions2 = {
                 'Apply the brakes immediately and swing back onto the pavement quickly',
                 'Quickly swing back onto the pavement at your normal speed'
             ],
-            // Corrected: both sheets marked swinging back at normal speed, which
-            // risks an overcorrection rollover. Ease off and slow first.
-            answer: 0
+            // Matches the printed answer sheet students are graded against.
+            // Note the options are ordered differently here than in PT.
+            answer: 2
         },
         {
             // Corrected from the sheet's "age 6" — Illinois sets this at 8.
@@ -1373,8 +1372,8 @@ const questions2 = {
                 'aplicar inmediatamente los frenos y volver al pavimento rápidamente',
                 'volver rápidamente al pavimento a la velocidad normal'
             ],
-            // Corrected: see the English version of this question.
-            answer: 0
+            // See the English version of this question.
+            answer: 2
         },
         {
             q: 'La ley de Illinois exige que los niños menores de 8 años deben asegurarse con un sistema de fijación (restraining system) o con un cinturón de seguridad al viajar en un vehículo motorizado:',
